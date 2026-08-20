@@ -1,0 +1,16 @@
+# Other projects that live in this folder but are not part of the planner
+next-play-finance/
+next-play-finance-old/
+
+# Local-only tool settings
+.claude/settings.local.json
+
+# macOS noise
+.DS_Store
+
+# Marketing plugin tooling and NPF context, not part of the planner
+.agents/
+
+# Plugin wiring
+.claude/skills/
+skills-lock.json

@@ -1,0 +1,970 @@
+/* ============================================================
+   Columbia Course Planner — Styles
+   Columbia Blue: #003DA5  |  Light Blue: #B9D9EB
+   ============================================================ */
+
+:root {
+  --blue:        #003DA5;
+  --blue-mid:    #0050cc;
+  --blue-light:  #B9D9EB;
+  --blue-bg:     #EEF4FB;
+  --gold:        #C4A217;
+  --silver:      #8A8A8A;
+  --white:       #FFFFFF;
+  --grey-100:    #F5F7FA;
+  --grey-200:    #E8ECF2;
+  --grey-300:    #CBD2DC;
+  --grey-600:    #6B7280;
+  --grey-900:    #1A1E2B;
+  --red:         #C4002B;
+  --green:       #1D7A47;
+  --radius:      8px;
+  --shadow:      0 2px 12px rgba(0,61,165,.10);
+  --shadow-lg:   0 6px 28px rgba(0,61,165,.15);
+  --transition:  .18s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--grey-900);
+  background: var(--grey-100);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.site-header {
+  background: var(--blue);
+  color: var(--white);
+  padding: 14px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.logo-crown {
+  font-size: 32px;
+  line-height: 1;
+  filter: brightness(1.4);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: Georgia, serif;
+  letter-spacing: -.3px;
+}
+
+.logo-sub {
+  font-size: 12px;
+  opacity: .8;
+}
+
+.header-note {
+  font-size: 12px;
+  opacity: .7;
+  text-align: right;
+  max-width: 200px;
+}
+
+/* ── Progress Bar ──────────────────────────────────────────── */
+.progress-bar-wrap {
+  background: var(--white);
+  border-bottom: 1px solid var(--grey-200);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.prog-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: var(--transition);
+}
+
+.prog-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--grey-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--grey-600);
+  background: var(--white);
+  transition: var(--transition);
+}
+
+.prog-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--grey-600);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.prog-step.active .prog-num {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+
+.prog-step.active .prog-label { color: var(--blue); }
+
+.prog-step.done .prog-num {
+  background: var(--blue-light);
+  border-color: var(--blue);
+  color: var(--blue);
+  font-size: 0; /* hide number, show checkmark via ::after */
+}
+
+.prog-step.done .prog-label { color: var(--blue); }
+
+.prog-step.done .prog-num::after {
+  content: "✓";
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.prog-line {
+  flex: 1;
+  height: 2px;
+  background: var(--grey-300);
+  max-width: 80px;
+  min-width: 24px;
+  transition: var(--transition);
+}
+
+.prog-line.done { background: var(--blue); }
+
+/* ── Main content area ─────────────────────────────────────── */
+main.container {
+  flex: 1;
+  padding-top: 36px;
+  padding-bottom: 48px;
+}
+
+/* ── Step intro text ────────────────────────────────────────── */
+.step-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.step-header h2 {
+  font-family: Georgia, serif;
+  font-size: 28px;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.step-header p {
+  color: var(--grey-600);
+  font-size: 15px;
+}
+
+/* ── School Cards (Step 1) ──────────────────────────────────── */
+.school-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.school-card {
+  background: var(--white);
+  border: 2px solid var(--grey-200);
+  border-radius: var(--radius);
+  padding: 28px 22px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.school-card:hover {
+  border-color: var(--blue-mid);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.school-card.selected {
+  border-color: var(--blue);
+  background: var(--blue-bg);
+  box-shadow: var(--shadow-lg);
+}
+
+.school-card-icon { font-size: 40px; margin-bottom: 12px; display: block; }
+
+.school-card h3 {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+
+.school-card .school-full { font-size: 12px; color: var(--grey-600); margin-bottom: 10px; }
+
+.school-card p { font-size: 13px; color: var(--grey-600); line-height: 1.5; }
+
+/* ── Major Selection (Step 2) ───────────────────────────────── */
+.major-form {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.form-block {
+  background: var(--white);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+.form-block h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--grey-900);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-block h3 .badge {
+  font-size: 11px;
+  background: var(--blue-bg);
+  color: var(--blue);
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.form-block h3 .badge.optional {
+  background: var(--grey-200);
+  color: var(--grey-600);
+}
+
+select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--grey-300);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--grey-900);
+  background: var(--white);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23003DA5' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  transition: var(--transition);
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0,61,165,.12);
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--grey-900);
+}
+
+.toggle-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+
+.sub-select { margin-top: 12px; }
+
+.semester-choice {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.semester-choice label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 14px;
+  border: 1.5px solid var(--grey-300);
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.semester-choice label:has(input:checked) {
+  border-color: var(--blue);
+  background: var(--blue-bg);
+  color: var(--blue);
+}
+
+.semester-choice input[type="radio"] { accent-color: var(--blue); }
+
+/* ── Checklist (Step 3) ─────────────────────────────────────── */
+.checklist-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 780px) {
+  .checklist-layout { grid-template-columns: 1fr; }
+}
+
+.checklist-groups { display: flex; flex-direction: column; gap: 16px; }
+
+.req-group {
+  background: var(--white);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.req-group-header {
+  padding: 14px 20px;
+  background: var(--grey-100);
+  border-bottom: 1px solid var(--grey-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.req-group-header h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--grey-900);
+}
+
+.req-group-meta { font-size: 12px; color: var(--grey-600); }
+
+.req-group-body { padding: 8px 0; }
+
+.course-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 20px;
+  border-bottom: 1px solid var(--grey-100);
+  transition: var(--transition);
+}
+
+.course-row:last-child { border-bottom: none; }
+.course-row:hover { background: var(--blue-bg); }
+
+.course-row input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--blue);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.course-row input:disabled { opacity: .45; cursor: not-allowed; }
+
+.course-code {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--blue-bg);
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+.course-name { flex: 1; font-size: 13px; color: var(--grey-900); }
+
+.course-credits {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--grey-600);
+  white-space: nowrap;
+}
+
+.course-offered {
+  font-size: 11px;
+  color: var(--grey-600);
+  background: var(--grey-100);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Completed-course row styling */
+.course-row.course-completed {
+  opacity: .5;
+  background: var(--grey-100);
+}
+.course-row.course-completed .course-name {
+  text-decoration: line-through;
+  color: var(--grey-600);
+}
+.done-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green);
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--grey-200);
+  transition: var(--transition);
+}
+.done-label:hover { background: #ecfdf5; border-color: var(--green); }
+.done-label input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+.completed-banner {
+  background: #ecfdf5;
+  border: 1px solid #86efac;
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #166534;
+  margin-bottom: 16px;
+}
+.badge-opt {
+  background: var(--grey-200) !important;
+  color: var(--grey-600) !important;
+}
+
+.elective-note {
+  font-size: 12px;
+  color: var(--grey-600);
+  padding: 8px 20px 12px;
+  font-style: italic;
+}
+
+/* Sidebar summary */
+.checklist-sidebar {
+  position: sticky;
+  top: 80px;
+}
+
+.sidebar-card {
+  background: var(--white);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.sidebar-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--grey-900);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--grey-200);
+}
+
+.credit-bar-wrap { margin-bottom: 10px; }
+
+.credit-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--grey-600);
+  margin-bottom: 5px;
+}
+
+.credit-bar {
+  height: 8px;
+  background: var(--grey-200);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.credit-bar-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 4px;
+  transition: width .3s ease;
+}
+
+.credit-stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--grey-100);
+}
+
+.credit-stat:last-child { border-bottom: none; }
+.credit-stat strong { font-weight: 700; }
+
+/* ── Action buttons ─────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 24px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.btn-primary:hover { background: var(--blue-mid); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled {
+  background: var(--grey-300);
+  color: var(--grey-600);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--blue);
+  border: 2px solid var(--blue);
+}
+
+.btn-secondary:hover { background: var(--blue-bg); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--grey-600);
+  border: 1px solid var(--grey-300);
+}
+
+.btn-ghost:hover { background: var(--grey-100); }
+
+.btn-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+/* ── 4-Year Plan (Step 4) ───────────────────────────────────── */
+.plan-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.plan-toolbar h2 {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  color: var(--blue);
+}
+
+.plan-meta { font-size: 13px; color: var(--grey-600); }
+
+.warnings-banner {
+  background: #FFF8E1;
+  border: 1px solid #FFCD3C;
+  border-radius: var(--radius);
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #6B5000;
+}
+
+.warnings-banner strong { display: block; margin-bottom: 4px; }
+
+.plan-years { display: flex; flex-direction: column; gap: 32px; }
+
+.plan-year-header {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--blue-light);
+}
+
+.plan-year-sems {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 680px) {
+  .plan-year-sems { grid-template-columns: 1fr; }
+}
+
+.semester-box {
+  background: var(--white);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.semester-box-header {
+  background: var(--blue);
+  color: var(--white);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.semester-box-header.spring {
+  background: #1558b0;
+}
+
+.semester-title {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .3px;
+}
+
+.semester-credits {
+  font-size: 12px;
+  opacity: .85;
+}
+
+.semester-courses { padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+
+.course-card {
+  border: 1px solid var(--grey-200);
+  border-radius: 6px;
+  padding: 10px 12px;
+  background: var(--grey-100);
+  transition: var(--transition);
+}
+
+.course-card:hover { border-color: var(--blue-mid); background: var(--blue-bg); }
+
+.course-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.cc-code {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--white);
+  border: 1px solid var(--blue-light);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.cc-credits {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--grey-600);
+  white-space: nowrap;
+}
+
+.cc-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--grey-900);
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.cc-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.cc-category {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* ── Course difficulty badge (on individual cards) ─────────── */
+.course-diff-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* ── Semester difficulty indicator ────────────────────────── */
+.sem-difficulty-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 4px;
+  border-bottom: 1px solid var(--grey-200);
+}
+
+.sem-diff-label {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.sem-diff-bar-wrap {
+  flex: 1;
+  height: 6px;
+  background: var(--grey-200);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.sem-diff-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width .4s ease;
+}
+
+.sem-diff-num {
+  font-size: 11px;
+  color: var(--grey-600);
+  white-space: nowrap;
+  min-width: 30px;
+  text-align: right;
+}
+
+/* ── Difficulty color classes (shared by badge, bar, label) ── */
+.diff-light       { background: #dcfce7; color: #166534; }
+.diff-moderate    { background: #fef9c3; color: #713f12; }
+.diff-heavy       { background: #ffedd5; color: #9a3412; }
+.diff-very-heavy  { background: #fee2e2; color: #991b1b; }
+.diff-empty       { background: var(--grey-100); color: var(--grey-600); }
+
+.sem-diff-bar.diff-light      { background: #22c55e; }
+.sem-diff-bar.diff-moderate   { background: #eab308; }
+.sem-diff-bar.diff-heavy      { background: #f97316; }
+.sem-diff-bar.diff-very-heavy { background: #ef4444; }
+.sem-diff-bar.diff-empty      { background: var(--grey-300); }
+
+/* ── Legend additions ─────────────────────────────────────── */
+.legend-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--grey-300);
+  margin: 0 4px;
+}
+
+.diff-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.diff-dot.diff-light      { background: #22c55e; }
+.diff-dot.diff-moderate   { background: #eab308; }
+.diff-dot.diff-heavy      { background: #f97316; }
+.diff-dot.diff-very-heavy { background: #ef4444; }
+
+.cc-category.math    { background: #EEF2FF; color: #3730A3; }
+.cc-category.core-cs { background: #EEF4FB; color: var(--blue); }
+.cc-category.elective{ background: #F0FDF4; color: #166534; }
+.cc-category.physics { background: #FFF7ED; color: #92400E; }
+.cc-category.writing { background: #FDF4FF; color: #6B21A8; }
+.cc-category.core-curriculum { background: #FFF1F2; color: #9F1239; }
+.cc-category.economics { background: #F0FDF4; color: #166534; }
+.cc-category.major   { background: #EEF4FB; color: var(--blue); }
+.cc-category.liberal { background: #FFFBEB; color: #92400E; }
+.cc-category.science { background: #FFF7ED; color: #92400E; }
+
+.cc-professor {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--grey-600);
+}
+
+.cc-professor a {
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.cc-professor a:hover { text-decoration: underline; }
+
+.nugget {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.nugget.gold   { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+.nugget.silver { background: #F3F4F6; color: #374151; border: 1px solid #D1D5DB; }
+
+/* ── Legend ─────────────────────────────────────────────────── */
+.plan-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 11px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── Checklist summary panel ─────────────────────────────────── */
+.plan-summary {
+  background: var(--white);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-top: 32px;
+}
+
+.plan-summary h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--grey-900);
+}
+
+.checklist-mini {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+
+.cl-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--grey-900);
+}
+
+.cl-item.done { color: var(--green); }
+.cl-item.done::before { content: "✓"; color: var(--green); font-weight: 700; }
+.cl-item:not(.done)::before { content: "○"; color: var(--grey-300); }
+
+/* ── Empty / Warning states ──────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--grey-600);
+}
+
+.empty-state h3 { margin-bottom: 8px; font-size: 18px; color: var(--grey-900); }
+
+/* ── Responsive tweaks ───────────────────────────────────────── */
+@media (max-width: 520px) {
+  .logo-title { font-size: 16px; }
+  .header-note { display: none; }
+  .btn-actions { justify-content: stretch; }
+  .btn { width: 100%; justify-content: center; }
+}

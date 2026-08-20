@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Columbia Course Planner</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="logo-link" onclick="resetApp(); return false;">
+        <div class="logo-crown">&#9812;</div>
+        <div class="logo-text">
+          <span class="logo-title">Columbia Course Planner</span>
+          <span class="logo-sub">Plan your path to graduation</span>
+        </div>
+      </a>
+      <div class="header-note">Always verify requirements with your academic advisor</div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="container">
+      <div class="progress-steps" id="progress-steps">
+        <button class="prog-step active" data-step="1" onclick="goToStep(1)">
+          <span class="prog-num">1</span>
+          <span class="prog-label">School</span>
+        </button>
+        <div class="prog-line" id="line-1-2"></div>
+        <button class="prog-step" data-step="2" onclick="goToStep(2)">
+          <span class="prog-num">2</span>
+          <span class="prog-label">Major</span>
+        </button>
+        <div class="prog-line" id="line-2-3"></div>
+        <button class="prog-step" data-step="3" onclick="goToStep(3)">
+          <span class="prog-num">3</span>
+          <span class="prog-label">Courses</span>
+        </button>
+        <div class="prog-line" id="line-3-4"></div>
+        <button class="prog-step" data-step="4" onclick="goToStep(4)">
+          <span class="prog-num">4</span>
+          <span class="prog-label">Your Plan</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="container" id="main-content">
+    <!-- Rendered by app.js -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        For planning purposes only. Verify all requirements with the
+        <a href="https://www.college.columbia.edu/" target="_blank">Columbia Bulletin</a>
+        and your advisor. Professor ratings link to
+        <a href="https://culpa.info" target="_blank">CULPA</a> — check there for current reviews.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Load order: data → planner → ui → app -->
+  <script src="js/data/courses.js?v=22"></script>
+  <script src="js/data/professors.js?v=22"></script>
+  <script src="js/data/majors.js?v=22"></script>
+  <script src="js/planner/scheduler.js?v=22"></script>
+  <script src="js/ui/steps.js?v=22"></script>
+  <script src="js/app.js?v=22"></script>
+</body>
+</html>
