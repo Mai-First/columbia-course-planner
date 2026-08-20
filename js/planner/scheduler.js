@@ -84,13 +84,30 @@ window.Scheduler = (function () {
       });
     });
 
+    // Chain depth: longest run of in-plan dependents below each course.
+    // A course with depth 3 must leave at least 3 semesters after itself,
+    // so balancing can never push a prerequisite so late its chain breaks.
+    const depth = {};
+    function chainDepth(c) {
+      if (depth[c] !== undefined) return depth[c];
+      depth[c] = 0; // guard against cycles; real value set below
+      let d = 0;
+      outEdges[c].forEach(dep => { d = Math.max(d, chainDepth(dep) + 1); });
+      depth[c] = d;
+      return d;
+    }
+    codes.forEach(chainDepth);
+
     // ── Kahn's Algorithm ────────────────────────────────────
     const queue = codes.filter(c => inDegree[c] === 0);
     const sortedCodes = [];
 
     while (queue.length > 0) {
-      // Pick course with lowest difficulty first (easier courses first when no constraint)
-      queue.sort((a, b) => (COURSES[a].difficulty || 3) - (COURSES[b].difficulty || 3));
+      // Most-constrained first: longest prerequisite chains, then heavier
+      // courses (packing big credit blocks first spreads loads more evenly).
+      queue.sort((a, b) =>
+        (depth[b] - depth[a]) ||
+        ((COURSES[b].credits || 3) - (COURSES[a].credits || 3)));
       const code = queue.shift();
       sortedCodes.push(code);
       outEdges[code].forEach(dep => {
@@ -132,6 +149,9 @@ window.Scheduler = (function () {
     const warnings = [];
 
     // ── Assign courses to semesters ─────────────────────────
+    // Balanced placement: among every semester a course can legally occupy,
+    // take the one with the fewest credits so the load spreads evenly
+    // instead of front-loading the first years.
     sortedCodes.forEach(code => {
       const course = COURSES[code];
 
@@ -142,21 +162,36 @@ window.Scheduler = (function () {
           earliest = Math.max(earliest, assignedSem[prereq] + 1);
         }
       });
+      // Latest semester that still leaves room for this course's dependents.
+      const latest = totalSems - 1 - (depth[code] || 0);
 
-      // Find the best semester to slot this course
-      let assigned = false;
-      for (let i = earliest; i < totalSems; i++) {
-        const sem = semesters[i];
-        // Never place courses in semesters that have already passed
-        if (sem.completed) continue;
-        // Check semester type matches course offering
-        if (!course.offered.includes(sem.type)) continue;
-        // Check load constraints
-        if (sem.credits + course.credits > MAX_CREDITS) continue;
-        if (sem.difficulty_sum + (course.difficulty || 3) > MAX_DIFFICULTY) continue;
-        if (sem.courses.length >= MAX_COURSES) continue;
+      const fits = sem =>
+        !sem.completed &&
+        course.offered.includes(sem.type) &&
+        sem.credits + course.credits <= MAX_CREDITS &&
+        sem.difficulty_sum + (course.difficulty || 3) <= MAX_DIFFICULTY &&
+        sem.courses.length < MAX_COURSES;
 
-        // Assign
+      // Preferred window respects the chain bound; if nothing fits there,
+      // fall back to any legal semester rather than dropping the course.
+      let candidates = semesters.filter(s => s.index >= earliest && s.index <= latest && fits(s));
+      if (candidates.length === 0) {
+        candidates = semesters.filter(s => s.index >= earliest && fits(s));
+      }
+      // Courses with dependents stay as early as possible so term-locked
+      // chains always have room; chain-end courses go to the lightest
+      // semester, which is what actually spreads the load.
+      if ((depth[code] || 0) > 0) {
+        candidates.sort((a, b) => a.index - b.index);
+      } else {
+        candidates.sort((a, b) =>
+          (a.credits - b.credits) ||
+          (a.difficulty_sum - b.difficulty_sum) ||
+          (a.index - b.index));
+      }
+      const sem = candidates[0];
+
+      if (sem) {
         const bestProf = selectBestProfessor(code);
         sem.courses.push({
           code: course.code,
@@ -170,15 +205,56 @@ window.Scheduler = (function () {
         });
         sem.credits += course.credits;
         sem.difficulty_sum += (course.difficulty || 3);
-        assignedSem[code] = i;
-        assigned = true;
-        break;
-      }
-
-      if (!assigned) {
+        assignedSem[code] = sem.index;
+      } else {
         warnings.push(`Could not schedule ${course.code} (${course.name}) in ${totalSems} semesters. Consider an extra semester.`);
       }
     });
+
+    // ── Rebalance ───────────────────────────────────────────
+    // Greedy placement can still stack chain tails late. Keep moving a course
+    // out of the heaviest semester into a strictly lighter legal one (between
+    // its prereqs and dependents) until no move improves the spread.
+    let moved = true, guard = 0;
+    while (moved && guard++ < 80) {
+      moved = false;
+      const heaviest = semesters
+        .filter(s => !s.completed && s.courses.length > 0)
+        .sort((a, b) => b.credits - a.credits)[0];
+      if (!heaviest) break;
+      for (const entry of [...heaviest.courses]) {
+        const course = COURSES[entry.id];
+        if (!course) continue;
+        let lo = completedSems, hi = totalSems - 1;
+        course.prereqs.forEach(p => {
+          if (assignedSem[p] !== undefined) lo = Math.max(lo, assignedSem[p] + 1);
+        });
+        (outEdges[entry.id] || []).forEach(d => {
+          if (assignedSem[d] !== undefined) hi = Math.min(hi, assignedSem[d] - 1);
+        });
+        let best = null;
+        for (const t of semesters) {
+          if (t.index < lo || t.index > hi || t === heaviest || t.completed) continue;
+          if (!course.offered.includes(t.type)) continue;
+          if (t.credits + entry.credits > MAX_CREDITS) continue;
+          if (t.difficulty_sum + (course.difficulty || 3) > MAX_DIFFICULTY) continue;
+          if (t.courses.length >= MAX_COURSES) continue;
+          if (t.credits + entry.credits >= heaviest.credits) continue; // must strictly even out
+          if (!best || t.credits < best.credits) best = t;
+        }
+        if (best) {
+          heaviest.courses.splice(heaviest.courses.indexOf(entry), 1);
+          heaviest.credits -= entry.credits;
+          heaviest.difficulty_sum -= (course.difficulty || 3);
+          best.courses.push(entry);
+          best.credits += entry.credits;
+          best.difficulty_sum += (course.difficulty || 3);
+          assignedSem[entry.id] = best.index;
+          moved = true;
+          break;
+        }
+      }
+    }
 
     if (missing.length > 0) {
       warnings.push(`Unrecognized course codes (not in database): ${missing.join(", ")}. They were skipped.`);

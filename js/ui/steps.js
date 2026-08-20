@@ -241,7 +241,7 @@ window.renderStep3 = function () {
           <h4>Notes</h4>
           <p>&#9432; Required courses are locked; they all appear in your plan.</p>
           <p style="margin-top:6px;">&#9432; Use the checkboxes to pick your electives.</p>
-          <p style="margin-top:6px;">&#9432; The plan respects prerequisites and when courses are offered.</p>
+          <p style="margin-top:6px;">&#9432; The plan respects prerequisites and offered terms, and spreads credits evenly across your remaining semesters.</p>
           <p style="margin-top:6px;">&#9432; Always verify with the <a href="https://bulletin.columbia.edu" target="_blank">Columbia Bulletin</a> and your advisor.</p>
         </div>
       </div>
