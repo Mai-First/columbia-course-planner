@@ -15,6 +15,8 @@ window.STATE = {
   completedCourses: {},     // { courseCode: true } — already taken
   selectedElectives: {},    // { groupId: [courseCode, ...] }
   customElectives: {},      // { groupId: [courseCode, ...] } — student-added options
+  freeElectives: [],        // [courseCode, ...] — courses beyond major requirements
+  planVariant: 0,           // increments on "try another layout"
   planResult: null
 };
 
@@ -73,7 +75,8 @@ window.resetApp = function () {
     step: 1, school: null, majors: [null,null], minors: [null],
     addDouble: false, addMinor: false, startSemester: "fall",
     currentYear: null, completedCourses: {},
-    selectedElectives: {}, customElectives: {}, planResult: null
+    selectedElectives: {}, customElectives: {}, freeElectives: [],
+    planVariant: 0, planResult: null
   };
   render();
 };
@@ -87,6 +90,7 @@ window.selectSchool = function (schoolId) {
   STATE.addMinor = false;
   STATE.selectedElectives = {};
   STATE.customElectives = {};
+  STATE.freeElectives = [];
   STATE.completedCourses = {};
   render();
 };
@@ -147,18 +151,23 @@ window.groupCourseList = function (group) {
   return group.courses.concat(custom);
 };
 
-// Add any catalog course to an elective/choose group. Accepts a short key
-// ("COMS4771") or an official code ("COMS W4771"), case-insensitive.
-window.addCustomElective = function (groupId, inputEl) {
-  const raw = (inputEl.value || "").trim();
-  if (!raw) return;
+// Resolve typed input to a catalog key. Accepts a short key ("COMS4771"),
+// an official code ("COMS W4771"), or a datalist pick, case-insensitive.
+function resolveCourseInput(raw) {
   const norm = raw.toLowerCase().replace(/\s+/g, " ");
-  const key = Object.keys(COURSES).find(k =>
+  return Object.keys(COURSES).find(k =>
     k.toLowerCase() === norm.replace(/ /g, "") ||
     COURSES[k].code.toLowerCase() === norm ||
     (COURSES[k].code + " — " + COURSES[k].name).toLowerCase() === norm ||
     (COURSES[k].code + " · " + COURSES[k].name).toLowerCase() === norm
   );
+}
+
+// Add any catalog course to an elective/choose group.
+window.addCustomElective = function (groupId, inputEl) {
+  const raw = (inputEl.value || "").trim();
+  if (!raw) return;
+  const key = resolveCourseInput(raw);
   inputEl.value = "";
   if (!key) {
     showToast(`No course matching "${raw}" in the catalog.`);
@@ -187,6 +196,52 @@ window.addCustomElective = function (groupId, inputEl) {
     render();
     showToast(`Added ${COURSES[key].code} as an option. Uncheck another course to select it.`);
   }
+};
+
+// ── Free electives & degree credits ───────────────────────────
+// Columbia degrees require more credits than the major alone (about 124 at
+// CC/GS, 128 at SEAS, 122 at Barnard); free electives close the gap.
+window.degreeCredits = function () {
+  const totals = STATE.majors.filter(Boolean)
+    .map(id => (MAJORS[id] && MAJORS[id].min_credits) || 0);
+  return Math.max(124, ...totals);
+};
+
+window.freeElectiveCredits = function () {
+  return STATE.freeElectives.reduce((s, c) => s + (COURSES[c]?.credits || 3), 0);
+};
+
+window.completedCreditsMarked = function () {
+  return Object.keys(STATE.completedCourses)
+    .reduce((s, c) => s + (COURSES[c]?.credits || 0), 0);
+};
+
+window.addFreeElective = function (inputEl) {
+  const raw = (inputEl.value || "").trim();
+  if (!raw) return;
+  const key = resolveCourseInput(raw);
+  inputEl.value = "";
+  if (!key) {
+    showToast(`No course matching "${raw}" in the catalog.`);
+    return;
+  }
+  if (STATE.completedCourses[key]) {
+    showToast(`${COURSES[key].code} is marked as already completed.`);
+    return;
+  }
+  if (STATE.freeElectives.includes(key) || collectAllCourseCodes().includes(key)) {
+    showToast(`${COURSES[key].code} is already in your plan.`);
+    return;
+  }
+  STATE.freeElectives.push(key);
+  render();
+  showToast(`Added ${COURSES[key].code} as a free elective.`);
+};
+
+window.removeFreeElective = function (key) {
+  const i = STATE.freeElectives.indexOf(key);
+  if (i > -1) STATE.freeElectives.splice(i, 1);
+  render();
 };
 
 // Pre-select the first N courses for each group that needs a selection
@@ -273,7 +328,8 @@ window.buildPlan = function () {
   for (let sems = MIN_SEMS; sems <= MAX_SEMS; sems += 2) {
     result = Scheduler.generate(allCourses, STATE.startSemester, sems, {
       completedSems: completedSems,
-      maxCredits: creditCap()
+      maxCredits: creditCap(),
+      seed: STATE.planVariant
     });
     const couldNotPlace = result.warnings.some(w => w.includes("Could not schedule"));
     if (!couldNotPlace) break;
@@ -283,6 +339,14 @@ window.buildPlan = function () {
   STATE.step = 4;
   render();
   window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+// "Try another layout": rebuild the plan with a different (still valid)
+// arrangement. Manual moves and swaps are replaced by the new layout.
+window.regeneratePlan = function () {
+  STATE.planVariant = (STATE.planVariant || 0) + 1;
+  buildPlan();
+  showToast(`Layout ${STATE.planVariant + 1}. Same requirements, different arrangement.`);
 };
 
 // ── Plan editing ──────────────────────────────────────────────
@@ -425,6 +489,9 @@ window.collectAllCourseCodes = function () {
   if (minorId && MINORS[minorId]) {
     MINORS[minorId].courses.forEach(c => codes.add(c));
   }
+
+  // Add free electives (courses beyond the major, toward the degree total)
+  STATE.freeElectives.forEach(c => codes.add(c));
 
   // Remove already-completed courses — the scheduler treats missing prereqs
   // as already satisfied, so prereq chains work correctly

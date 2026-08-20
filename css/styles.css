@@ -1082,3 +1082,42 @@ button, .school-card, .prog-step, select, .done-label {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* ── Free electives, degree progress, regenerate ────────────── */
+.free-electives .req-group-header h4 { color: var(--blue); }
+.remove-btn {
+  border: none;
+  background: none;
+  color: var(--red);
+  font-size: 16px;
+  line-height: 1;
+  padding: 2px 6px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.remove-btn:hover { background: var(--grey-100); }
+.credit-remaining {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--grey-600);
+  background: #FDF6E3;
+  border: 1px solid #EAD9A0;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.credit-remaining.ok, .degree-notice.ok {
+  background: #EFF7F1;
+  border-color: #BFDCC8;
+  color: var(--green);
+}
+.degree-notice {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--grey-900);
+  background: #FDF6E3;
+  border: 1px solid #EAD9A0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}

@@ -56,6 +56,18 @@ window.Scheduler = (function () {
     totalSems = totalSems || 8;
     opts = opts || {};
     const completedSems = Math.max(0, opts.completedSems || 0);
+    // Seeded RNG for "try another layout": seed 0 is fully deterministic;
+    // higher seeds break ties randomly among near-equal choices, so each
+    // variant is a different but equally valid arrangement.
+    let rngState = (opts.seed || 0) * 2654435761 >>> 0;
+    const rng = () => {
+      rngState = (rngState + 0x6D2B79F5) >>> 0;
+      let t = rngState;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const vary = (opts.seed || 0) > 0;
 
     // Deduplicate
     const codes = [...new Set(courseCodes)].filter(c => COURSES[c]);
@@ -181,15 +193,23 @@ window.Scheduler = (function () {
       // Courses with dependents stay as early as possible so term-locked
       // chains always have room; chain-end courses go to the lightest
       // semester, which is what actually spreads the load.
+      let sem;
       if ((depth[code] || 0) > 0) {
         candidates.sort((a, b) => a.index - b.index);
+        sem = candidates[0];
       } else {
         candidates.sort((a, b) =>
           (a.credits - b.credits) ||
           (a.difficulty_sum - b.difficulty_sum) ||
           (a.index - b.index));
+        if (vary && candidates.length > 1) {
+          // Any semester within 3 credits of the lightest is fair game.
+          const near = candidates.filter(s => s.credits <= candidates[0].credits + 3);
+          sem = near[Math.floor(rng() * near.length)];
+        } else {
+          sem = candidates[0];
+        }
       }
-      const sem = candidates[0];
 
       if (sem) {
         const bestProf = selectBestProfessor(code);

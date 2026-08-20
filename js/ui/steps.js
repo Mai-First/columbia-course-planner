@@ -208,6 +208,36 @@ window.renderStep3 = function () {
     <div class="checklist-layout">
       <div class="checklist-groups">
         ${allGroups.map(group => renderGroup(group)).join("")}
+
+        <div class="req-group free-electives">
+          <div class="req-group-header">
+            <h4>Add Courses (free electives)</h4>
+            <div class="req-group-meta">${freeElectiveCredits()} cr added</div>
+          </div>
+          <div class="req-group-body">
+            ${STATE.freeElectives.length === 0 ? `
+              <div class="elective-note">Your degree needs about ${degreeCredits()} credits total; the major alone doesn't get you there. Add any courses you want to take toward the rest.</div>
+            ` : STATE.freeElectives.map(code => {
+              const c = COURSES[code];
+              if (!c) return "";
+              return `
+                <div class="course-row" id="row-free-${code}">
+                  <button class="remove-btn" title="Remove" onclick="removeFreeElective('${code}')">&times;</button>
+                  <span class="course-code">${c.code}</span>
+                  <span class="course-name">${c.name}</span>
+                  <span class="course-credits">${c.credits} cr</span>
+                  <span class="course-offered">${c.offered.map(o => o === "fall" ? "F" : "Sp").join("/")}</span>
+                </div>
+              `;
+            }).join("")}
+            <div class="add-course-row">
+              <input list="all-courses" class="add-course-input"
+                     placeholder="Add any course to your plan (type a code or name)&hellip;"
+                     onchange="addFreeElective(this)">
+            </div>
+          </div>
+        </div>
+
         <div class="btn-actions">
           <button class="btn btn-ghost" onclick="goToStep(2)">&larr; Back</button>
           <button class="btn btn-primary" onclick="buildPlan()">
@@ -218,24 +248,29 @@ window.renderStep3 = function () {
       <div class="checklist-sidebar">
         <div class="sidebar-card">
           <h4>Credit Summary</h4>
+          ${(() => {
+            const degree = degreeCredits();
+            const toward = totalSelected + freeElectiveCredits() + completedCreditsMarked();
+            const remaining = Math.max(0, degree - toward);
+            return `
           <div class="credit-bar-wrap">
             <div class="credit-bar-label">
-              <span>Selected credits</span>
-              <span><strong>${totalSelected}</strong> / ~${MAJORS[STATE.majors[0]].min_credits}</span>
+              <span>Toward your degree</span>
+              <span><strong>${toward}</strong> / ~${degree}</span>
             </div>
             <div class="credit-bar">
-              <div class="credit-bar-fill" style="width:${Math.min(100, Math.round(totalSelected / MAJORS[STATE.majors[0]].min_credits * 100))}%"></div>
+              <div class="credit-bar-fill" style="width:${Math.min(100, Math.round(toward / degree * 100))}%"></div>
             </div>
           </div>
-          ${allGroups.map(g => {
-            const gSelected = countGroupSelected(g);
-            return `
-              <div class="credit-stat">
-                <span>${g.name}</span>
-                <strong>${gSelected} cr</strong>
-              </div>
-            `;
-          }).join("")}
+          <div class="credit-stat"><span>Requirements selected</span><strong>${totalSelected} cr</strong></div>
+          <div class="credit-stat"><span>Free electives</span><strong>${freeElectiveCredits()} cr</strong></div>
+          <div class="credit-stat"><span>Marked done</span><strong>${completedCreditsMarked()} cr</strong></div>
+          ${remaining > 0 ? `
+            <div class="credit-remaining">Still about <strong>${remaining} credits</strong> short of the ~${degree} your degree requires. Use "Add Courses" below the requirements to fill the gap.</div>
+          ` : `
+            <div class="credit-remaining ok">&#10003; This selection reaches your degree's ~${degree} credits.</div>
+          `}`;
+          })()}
         </div>
         <div class="sidebar-card" style="font-size:12px;color:var(--grey-600);line-height:1.6;">
           <h4>Notes</h4>
@@ -349,6 +384,7 @@ window.renderStep4 = function () {
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <button class="btn btn-ghost" onclick="goToStep(3)">&larr; Edit Courses</button>
+        <button class="btn btn-secondary" onclick="regeneratePlan()">&#8635; Try Another Layout</button>
         <button class="btn btn-secondary" onclick="exportPlan()">&#8659; Export Plan</button>
         <button class="btn btn-ghost" onclick="resetApp()">Start Over</button>
       </div>
@@ -362,6 +398,18 @@ window.renderStep4 = function () {
     ` : ""}
 
     ${takenHtml}
+
+    ${(() => {
+      const degree = degreeCredits();
+      const toward = totalCredits + completedCreditsMarked();
+      const remaining = degree - toward;
+      return remaining > 0 ? `
+        <div class="degree-notice">
+          This plan covers <strong>${toward}</strong> of the ~<strong>${degree}</strong> credits your degree requires.
+          Add about ${remaining} more credits of free electives in the Courses step, or mark past coursework as done.
+        </div>` : `
+        <div class="degree-notice ok">&#10003; This plan reaches your degree's ~${degree}-credit requirement.</div>`;
+    })()}
 
     <div class="plan-legend">
       <div class="legend-item"><div class="legend-dot" style="background:#3730A3"></div> Math</div>
