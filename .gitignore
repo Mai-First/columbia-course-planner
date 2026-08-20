@@ -14,3 +14,6 @@ next-play-finance-old/
 # Plugin wiring
 .claude/skills/
 skills-lock.json
+
+# Local dev-server registry (lists other local projects; keep out of the public repo)
+.claude/launch.json

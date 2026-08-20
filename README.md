@@ -18,7 +18,7 @@ You can edit the plan it gives you. Each card has "Move to", which lists the sem
 Serve the folder with any static server; nothing compiles.
 
 ```bash
-python3 -m http.server 3000
+python3 serve.py 3000
 ```
 
 Then open `http://localhost:3000`.
