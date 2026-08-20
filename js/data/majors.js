@@ -916,7 +916,7 @@ window.MAJORS = {
               "elective_count": 3,
               "courses": [
                   "STAT4224",
-                  "STAT4315",
+                  "STAT4221",
                   "STAT3001",
                   "COMS4771",
                   "IEOR3600"
@@ -1970,7 +1970,7 @@ window.MAJORS = {
         note: "Three astronomy courses at the 3000 level or above (each requires the calculus-based physics sequence)." },
       { id: "astro-intro", name: "Intro Astronomy (astronomy-track option)", type: "elective", elective_count: 1,
         courses: ["ASTR1403","ASTR1404","ASTR1453"],
-        note: "The non-astrophysics Astronomy track may substitute two 1000-level surveys for Intro Astrophysics — pick one here as enrichment." },
+        note: "The non-astrophysics Astronomy track may substitute two 1000-level surveys for Intro Astrophysics: pick one here as enrichment." },
       { id: "astro-senior", name: "Senior Thesis", type: "elective", elective_count: 1,
         courses: ["ASTR3997","ASTR3998"],
         note: "Optional senior thesis (two terms available), recommended for graduate school." }
@@ -2049,7 +2049,7 @@ window.MAJORS = {
         note: "Read/Think/Write plus the two intro-to-studies courses." },
       { id: "fren-electives", name: "Electives", type: "elective", elective_count: 6,
         courses: ["FREN3242","FREN3503","FREN3515","FREN3517","FREN3600","FREN3666","FREN3714","FREN3726","FREN3766"],
-        note: "Six upper-level courses, 18 points (all require Read/Think/Write first); at least one pre-1800 course — Enlightenment, Montaigne/Descartes/Pascal, or Molière; max two 'French Through X'." },
+        note: "Six upper-level courses, 18 points (all require Read/Think/Write first); at least one pre-1800 course (Enlightenment, Montaigne/Descartes/Pascal, or Molière); max two 'French Through X'." },
       { id: "fren-senior", name: "Senior Seminar", type: "required",
         courses: ["FREN3995"], note: "" },
       { id: "fren-tutorial", name: "Senior Tutorial (Honors)", type: "elective", elective_count: 1,
@@ -3081,7 +3081,7 @@ window.MAJORS = {
                   "ASTR1404",
                   "ASTR1453"
               ],
-              "note": "The non-astrophysics Astronomy track may substitute two 1000-level surveys for Intro Astrophysics — pick one here as enrichment."
+              "note": "The non-astrophysics Astronomy track may substitute two 1000-level surveys for Intro Astrophysics: pick one here as enrichment."
           },
           {
               "id": "astro-senior",
@@ -5020,7 +5020,7 @@ window.MAJORS = {
               "elective_count": 3,
               "courses": [
                   "STAT4224",
-                  "STAT4315",
+                  "STAT4221",
                   "STAT3001",
                   "COMS4771",
                   "IEOR3600"
@@ -5911,7 +5911,7 @@ window.MAJORS = {
               "name": "Senior Capstone",
               "type": "required",
               "courses": [
-                  "FILMBC3997"
+                  "FILM4001"
               ],
               "note": ""
           }
@@ -6487,7 +6487,7 @@ window.MAJORS = {
               "elective_count": 3,
               "courses": [
                   "STAT4224",
-                  "STAT4315",
+                  "STAT4221",
                   "STAT3001",
                   "COMS4771",
                   "IEOR3600"
@@ -6701,7 +6701,7 @@ window.MAJORS = {
       { id: "econ-core", name: "Economics Core", type: "required",
         courses: ["ECON1105","ECON3211","ECON3213","ECON3412"], note: "" },
       { id: "electives", name: "Electives", type: "elective", elective_count: 2,
-        courses: ["ECON4415","STAT4224","STAT4315"], note: "" }
+        courses: ["ECON4415","STAT4224","STAT4221"], note: "" }
     ]
   },
 
@@ -6774,7 +6774,7 @@ window.MAJORS = {
       { id: "math", name: "Mathematics", type: "required",
         courses: ["MATH1101","MATH1102","MATH1201","MATH2010","MATH4061"], note: "" },
       { id: "stats", name: "Statistics", type: "required",
-        courses: ["STAT1201","STAT3001","STAT4205","STAT4315"], note: "" },
+        courses: ["STAT1201","STAT3001","STAT4205","STAT4204"], note: "" },
       { id: "electives", name: "Electives", type: "elective", elective_count: 2,
         courses: ["STAT4224","MATH4062","MATH4500"], note: "" }
     ]

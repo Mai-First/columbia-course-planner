@@ -14,6 +14,7 @@ window.STATE = {
   currentYear: null,        // 1-4 (student's current year, optional)
   completedCourses: {},     // { courseCode: true } — already taken
   selectedElectives: {},    // { groupId: [courseCode, ...] }
+  customElectives: {},      // { groupId: [courseCode, ...] } — student-added options
   planResult: null
 };
 
@@ -72,7 +73,7 @@ window.resetApp = function () {
     step: 1, school: null, majors: [null,null], minors: [null],
     addDouble: false, addMinor: false, startSemester: "fall",
     currentYear: null, completedCourses: {},
-    selectedElectives: {}, planResult: null
+    selectedElectives: {}, customElectives: {}, planResult: null
   };
   render();
 };
@@ -85,6 +86,7 @@ window.selectSchool = function (schoolId) {
   STATE.addDouble = false;
   STATE.addMinor = false;
   STATE.selectedElectives = {};
+  STATE.customElectives = {};
   STATE.completedCourses = {};
   render();
 };
@@ -137,6 +139,54 @@ window.groupSelectCount = function (group) {
   if (group.type === "elective") return group.elective_count || 0;
   if (group.choose !== undefined) return group.choose;
   return group.courses.length; // plain required → all of them
+};
+
+// A group's full option list: its own menu plus any courses the student added.
+window.groupCourseList = function (group) {
+  const custom = (STATE.customElectives[group.id] || []).filter(c => !group.courses.includes(c));
+  return group.courses.concat(custom);
+};
+
+// Add any catalog course to an elective/choose group. Accepts a short key
+// ("COMS4771") or an official code ("COMS W4771"), case-insensitive.
+window.addCustomElective = function (groupId, inputEl) {
+  const raw = (inputEl.value || "").trim();
+  if (!raw) return;
+  const norm = raw.toLowerCase().replace(/\s+/g, " ");
+  const key = Object.keys(COURSES).find(k =>
+    k.toLowerCase() === norm.replace(/ /g, "") ||
+    COURSES[k].code.toLowerCase() === norm ||
+    (COURSES[k].code + " — " + COURSES[k].name).toLowerCase() === norm ||
+    (COURSES[k].code + " · " + COURSES[k].name).toLowerCase() === norm
+  );
+  inputEl.value = "";
+  if (!key) {
+    showToast(`No course matching "${raw}" in the catalog.`);
+    return;
+  }
+  if (STATE.completedCourses[key]) {
+    showToast(`${COURSES[key].code} is marked as already completed.`);
+    return;
+  }
+  if (!STATE.customElectives[groupId]) STATE.customElectives[groupId] = [];
+  const group = getRequirementGroups().find(g => g.id === groupId);
+  const already = group && groupCourseList(group).includes(key);
+  if (already) {
+    showToast(`${COURSES[key].code} is already an option in this group.`);
+    return;
+  }
+  STATE.customElectives[groupId].push(key);
+  // Auto-select it if the group still has room; otherwise tell the student
+  // how to make the swap themselves.
+  const sel = STATE.selectedElectives[groupId] || (STATE.selectedElectives[groupId] = []);
+  if (group && sel.length < groupSelectCount(group) && !sel.includes(key)) {
+    sel.push(key);
+    render();
+    showToast(`Added ${COURSES[key].code} and selected it.`);
+  } else {
+    render();
+    showToast(`Added ${COURSES[key].code} as an option. Uncheck another course to select it.`);
+  }
 };
 
 // Pre-select the first N courses for each group that needs a selection
@@ -198,26 +248,155 @@ window.toggleElective = function (groupId, courseCode, checked, el) {
   }
 };
 
+// Per-term registration caps without a petition, from each school's
+// official policies (CC/GS: 18, Barnard: 19, SEAS: 21).
+window.CREDIT_CAPS = { CC: 18, SEAS: 21, GS: 18, Barnard: 19 };
+
+window.creditCap = function () {
+  return CREDIT_CAPS[STATE.school] || 18;
+};
+
 window.buildPlan = function () {
   const allCourses = collectAllCourseCodes();
   if (allCourses.length === 0) {
     showToast("No courses selected.");
     return;
   }
-  // Try a standard 4-year (8-semester) plan first, then auto-extend up to 6
-  // years for heavy loads (GS, double majors) so courses aren't dropped into
-  // warnings. Use the first plan length where everything fits.
-  const MIN_SEMS = 8, MAX_SEMS = 12;
+  // Semesters already behind the student (year 3 = 4 semesters done).
+  const completedSems = STATE.currentYear ? (STATE.currentYear - 1) * 2 : 0;
+
+  // Try a standard 4-year (8-semester) plan first, then auto-extend for
+  // heavy loads or late starts so courses aren't dropped into warnings.
+  const MIN_SEMS = 8;
+  const MAX_SEMS = Math.max(12, completedSems + 8);
   let result = null;
   for (let sems = MIN_SEMS; sems <= MAX_SEMS; sems += 2) {
-    result = Scheduler.generate(allCourses, STATE.startSemester, sems);
+    result = Scheduler.generate(allCourses, STATE.startSemester, sems, {
+      completedSems: completedSems,
+      maxCredits: creditCap()
+    });
     const couldNotPlace = result.warnings.some(w => w.includes("Could not schedule"));
     if (!couldNotPlace) break;
   }
+  result.completedSems = completedSems;
   STATE.planResult = result;
   STATE.step = 4;
   render();
   window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+// ── Plan editing ──────────────────────────────────────────────
+
+function planFindCourse(courseId) {
+  const plan = STATE.planResult ? STATE.planResult.plan : [];
+  for (const sem of plan) {
+    const idx = sem.courses.findIndex(c => c.id === courseId);
+    if (idx > -1) return { sem, idx, entry: sem.courses[idx] };
+  }
+  return null;
+}
+
+function planHasCourse(courseId) {
+  return !!planFindCourse(courseId);
+}
+
+// Semesters a course could legally move to: not in the past, offered that
+// term, within the credit cap, and keeping prereqs before dependents.
+window.eligibleSemestersFor = function (courseId) {
+  const plan = STATE.planResult.plan;
+  const course = COURSES[courseId];
+  const loc = planFindCourse(courseId);
+  if (!course || !loc) return [];
+
+  let minIdx = 0, maxIdx = plan.length - 1;
+  plan.forEach((sem, i) => {
+    sem.courses.forEach(c => {
+      if (course.prereqs.includes(c.id)) minIdx = Math.max(minIdx, i + 1);
+      if ((COURSES[c.id]?.prereqs || []).includes(courseId)) maxIdx = Math.min(maxIdx, i - 1);
+    });
+  });
+
+  return plan.filter((sem, i) =>
+    i >= minIdx && i <= maxIdx &&
+    !sem.completed &&
+    i !== loc.sem.index &&
+    course.offered.includes(sem.type) &&
+    sem.credits + course.credits <= creditCap()
+  ).map(sem => ({ index: sem.index, label: sem.label }));
+};
+
+window.movePlanCourse = function (courseId, targetIdx) {
+  const loc = planFindCourse(courseId);
+  const ok = eligibleSemestersFor(courseId).some(e => e.index === targetIdx);
+  if (!loc || !ok) {
+    showToast("That semester doesn't work for this course (offering, credits, or prerequisites).");
+    return;
+  }
+  loc.sem.courses.splice(loc.idx, 1);
+  STATE.planResult.plan[targetIdx].courses.push(loc.entry);
+  Scheduler.recompute(STATE.planResult.plan);
+  render();
+  showToast(`${loc.entry.code} moved to ${STATE.planResult.plan[targetIdx].label}.`);
+};
+
+// Alternatives: other courses from the same choose/elective group(s) that
+// aren't already in the plan or completed.
+window.planAlternativesFor = function (courseId) {
+  const alts = new Set();
+  getRequirementGroups().forEach(group => {
+    if (!groupNeedsSelection(group)) return;
+    const options = groupCourseList(group);
+    if (!options.includes(courseId)) return;
+    options.forEach(c => {
+      if (c !== courseId && COURSES[c] && !STATE.completedCourses[c] && !planHasCourse(c)) {
+        alts.add(c);
+      }
+    });
+  });
+  return [...alts];
+};
+
+window.swapPlanCourse = function (courseId, altId) {
+  const loc = planFindCourse(courseId);
+  const alt = COURSES[altId];
+  if (!loc || !alt) return;
+
+  // Keep the Step 3 checklist consistent with the swap.
+  getRequirementGroups().forEach(group => {
+    if (!groupNeedsSelection(group)) return;
+    const sel = STATE.selectedElectives[group.id] || [];
+    const i = sel.indexOf(courseId);
+    if (i > -1 && groupCourseList(group).includes(altId)) sel[i] = altId;
+  });
+
+  loc.sem.courses.splice(loc.idx, 1);
+
+  const bestProf = Scheduler.selectBestProfessor(altId);
+  const entry = {
+    code: alt.code, id: altId, name: alt.name, credits: alt.credits,
+    category: alt.category || "major", dept: alt.dept,
+    professor: bestProf, allProfessors: alt.professors || []
+  };
+
+  // Prefer the same semester; otherwise first semester that legally fits.
+  const plan = STATE.planResult.plan;
+  const fits = sem => !sem.completed &&
+    alt.offered.includes(sem.type) &&
+    sem.credits + alt.credits <= creditCap() &&
+    !plan.some((s, i) => s.courses.some(c =>
+      (alt.prereqs.includes(c.id) && i >= sem.index) ||
+      ((COURSES[c.id]?.prereqs || []).includes(altId) && i <= sem.index)));
+  let target = fits(loc.sem) ? loc.sem : plan.find(fits);
+
+  if (!target) {
+    loc.sem.courses.splice(loc.idx, 0, loc.entry); // revert
+    showToast(`${alt.code} doesn't fit anywhere in this plan. Try regenerating instead.`);
+    return;
+  }
+  target.courses.push(entry);
+  Scheduler.recompute(plan);
+  render();
+  showToast(`Swapped in ${alt.code} (${target.label}).`);
 };
 
 // ── Helpers ───────────────────────────────────────────────────

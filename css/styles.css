@@ -30,7 +30,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--grey-900);
   background: var(--grey-100);
@@ -146,7 +146,7 @@ a:hover { text-decoration: underline; }
 }
 
 .prog-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--grey-600);
   transition: var(--transition);
@@ -210,7 +210,7 @@ main.container {
 
 .step-header p {
   color: var(--grey-600);
-  font-size: 15px;
+  font-size: 16px;
 }
 
 /* ── School Cards (Step 1) ──────────────────────────────────── */
@@ -274,7 +274,7 @@ main.container {
 }
 
 .form-block h3 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--grey-900);
   margin-bottom: 12px;
@@ -284,7 +284,7 @@ main.container {
 }
 
 .form-block h3 .badge {
-  font-size: 11px;
+  font-size: 12px;
   background: var(--blue-bg);
   color: var(--blue);
   padding: 2px 8px;
@@ -451,7 +451,7 @@ select:focus {
 }
 
 .course-offered {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--grey-600);
   background: var(--grey-100);
   padding: 2px 6px;
@@ -473,7 +473,7 @@ select:focus {
   align-items: center;
   gap: 4px;
   margin-left: auto;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--green);
   cursor: pointer;
@@ -730,7 +730,7 @@ select:focus {
 
 .cc-code {
   font-family: "SF Mono", "Fira Code", monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--blue);
   background: var(--white);
@@ -741,7 +741,7 @@ select:focus {
 }
 
 .cc-credits {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--grey-600);
   white-space: nowrap;
@@ -764,7 +764,7 @@ select:focus {
 }
 
 .cc-category {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .5px;
@@ -775,7 +775,7 @@ select:focus {
 
 /* ── Course difficulty badge (on individual cards) ─────────── */
 .course-diff-badge {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   padding: 2px 6px;
   border-radius: 3px;
@@ -792,7 +792,7 @@ select:focus {
 }
 
 .sem-diff-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   padding: 2px 8px;
   border-radius: 20px;
@@ -814,7 +814,7 @@ select:focus {
 }
 
 .sem-diff-num {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--grey-600);
   white-space: nowrap;
   min-width: 30px;
@@ -869,14 +869,14 @@ select:focus {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--grey-600);
 }
 
 .cc-professor a {
   color: var(--blue);
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .cc-professor a:hover { text-decoration: underline; }
@@ -885,7 +885,7 @@ select:focus {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   padding: 1px 6px;
   border-radius: 10px;
@@ -901,7 +901,7 @@ select:focus {
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 20px;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .legend-item {
@@ -928,7 +928,7 @@ select:focus {
 }
 
 .plan-summary h3 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   margin-bottom: 12px;
   color: var(--grey-900);
@@ -967,4 +967,118 @@ select:focus {
   .header-note { display: none; }
   .btn-actions { justify-content: stretch; }
   .btn { width: 100%; justify-content: center; }
+}
+
+/* ── Completed semesters & plan editing ─────────────────────── */
+.semester-box.completed {
+  opacity: 0.6;
+  background: var(--grey-50, #f7f8fa);
+}
+.sem-completed-note {
+  font-size: 12px;
+  color: var(--grey-600);
+  padding: 14px 12px;
+  font-style: italic;
+}
+.plan-edit-hint {
+  font-size: 12px;
+  color: var(--grey-600);
+  margin-top: 4px;
+}
+.cc-edit {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.cc-edit-select {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  padding: 3px 4px;
+  border: 1px solid var(--grey-300, #d4d8de);
+  border-radius: 6px;
+  color: var(--grey-600);
+  background: white;
+  max-width: 100%;
+}
+
+/* ── Taken-so-far summary & custom electives ────────────────── */
+.taken-card {
+  background: white;
+  border: 1px solid var(--grey-200, #e4e7eb);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.taken-card h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.taken-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.taken-chip {
+  font-size: 12px;
+  font-family: ui-monospace, monospace;
+  background: var(--grey-100, #eef1f4);
+  color: var(--grey-600);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+.taken-empty {
+  font-size: 12px;
+  color: var(--grey-600);
+}
+.add-course-row {
+  padding: 8px 0 2px;
+}
+.add-course-input {
+  width: 100%;
+  font-size: 12px;
+  padding: 6px 8px;
+  border: 1px dashed var(--grey-300, #d4d8de);
+  border-radius: 6px;
+  color: var(--grey-600);
+}
+
+/* ── Clarity & accessibility refinements ────────────────────── */
+input[type="checkbox"], input[type="radio"] {
+  accent-color: var(--blue);
+  width: 16px;
+  height: 16px;
+}
+
+button, .school-card, .prog-step, select, .done-label {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue-mid);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.school-card:focus-visible {
+  outline: 3px solid var(--blue-mid);
+}
+
+.btn, select, .add-course-input, .cc-edit-select {
+  min-height: 36px;
+}
+
+.step-header p {
+  max-width: 62ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

@@ -35,7 +35,7 @@ window.COURSES = {
     professors: ["Patrick Gallagher", "Daniele Alessandrini", "Lindsay Piechnik"]
   },
   "MATH3027": {
-    code: "MATH UN3027", name: "Ordinary Differential Equations", credits: 3,
+    code: "MATH UN2030", name: "Ordinary Differential Equations", credits: 3,
     offered: ["fall","spring"], prereqs: ["MATH1102","MATH2010"], difficulty: 3,
     dept: "MATH", category: "math",
     description: "First and second-order ODEs, systems of ODEs, power series solutions, Laplace transforms, boundary value problems.",
@@ -43,14 +43,14 @@ window.COURSES = {
   },
   "MATH4061": {
     code: "MATH GU4061", name: "Introduction to Modern Analysis I", credits: 3,
-    offered: ["fall"], prereqs: ["MATH2010","MATH1201"], difficulty: 5,
+    offered: ["fall","spring"], prereqs: ["MATH2010","MATH1201"], difficulty: 5,
     dept: "MATH", category: "math",
     description: "Metric spaces, completeness, compactness, continuity, uniform convergence, differentiation, Riemann integration. Notoriously rigorous — proof-heavy.",
     professors: ["Daniele Alessandrini", "Francesco Lin"]
   },
   "MATH4062": {
     code: "MATH GU4062", name: "Introduction to Modern Analysis II", credits: 3,
-    offered: ["spring"], prereqs: ["MATH4061"], difficulty: 5,
+    offered: ["fall","spring"], prereqs: ["MATH4061"], difficulty: 5,
     dept: "MATH", category: "math",
     description: "Power series, analytic functions, implicit function theorem, Fubini theorem, change of variables, Lebesgue measure and integration, function spaces.",
     professors: ["Daniele Alessandrini", "Francesco Lin"]
@@ -72,7 +72,7 @@ window.COURSES = {
 
   // ── Statistics ─────────────────────────────────────────────
   "STAT1201": {
-    code: "STAT 1201", name: "Introduction to Statistics", credits: 3,
+    code: "STAT UN1201", name: "Calculus-Based Introduction to Statistics", credits: 3,
     offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "STAT", category: "math",
     description: "Descriptive statistics, probability, inference, regression.",
@@ -89,14 +89,14 @@ window.COURSES = {
   // ── Physics ────────────────────────────────────────────────
   "PHYS1401": {
     code: "PHYS UN1401", name: "General Physics I (Mechanics)", credits: 4,
-    offered: ["fall","spring"], prereqs: ["MATH1101"], difficulty: 3,
+    offered: ["fall"], prereqs: ["MATH1101"], difficulty: 3,
     dept: "PHYS", category: "physics",
     description: "Calculus-based mechanics: kinematics, Newton's laws, work-energy, momentum, rotational dynamics, and gravitation.",
     professors: ["Szabolcs Marka", "Emlyn Hughes"]
   },
   "PHYS1402": {
     code: "PHYS UN1402", name: "General Physics II (Electricity & Magnetism)", credits: 4,
-    offered: ["fall","spring"], prereqs: ["PHYS1401","MATH1102"], difficulty: 4,
+    offered: ["spring"], prereqs: ["PHYS1401","MATH1102"], difficulty: 4,
     dept: "PHYS", category: "physics",
     description: "Electrostatics, Gauss's law, circuits, magnetic fields, electromagnetic induction, Maxwell's equations, optics. Steeper conceptual curve than Physics I.",
     professors: ["Szabolcs Marka", "Emlyn Hughes"]
@@ -110,7 +110,7 @@ window.COURSES = {
   },
   "PHYS3003": {
     code: "PHYS UN3003", name: "Mechanics", credits: 3,
-    offered: ["fall"], prereqs: ["PHYS1402","MATH3027"], difficulty: 4,
+    offered: ["spring"], prereqs: ["PHYS1402","MATH3027"], difficulty: 4,
     dept: "PHYS", category: "physics",
     description: "Lagrangian and Hamiltonian mechanics, central force problem, rigid body dynamics, small oscillations.",
     professors: ["Szabolcs Marka"]
@@ -139,7 +139,7 @@ window.COURSES = {
 
   // ── Chemistry ──────────────────────────────────────────────
   "CHEM1403": {
-    code: "CHEM 1403", name: "General Chemistry I", credits: 4,
+    code: "CHEM UN1403", name: "General Chemistry I", credits: 4,
     offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "CHEM", category: "science",
     description: "Atomic structure, bonding, thermodynamics, equilibrium.",
@@ -148,7 +148,7 @@ window.COURSES = {
 
   // ── Writing ────────────────────────────────────────────────
   "ENGL1010": {
-    code: "ENGL 1010", name: "University Writing", credits: 3,
+    code: "ENGL CC1010", name: "University Writing", credits: 3,
     offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "ENGL", category: "writing",
     description: "Argument, analysis, and academic writing across disciplines.",
@@ -157,56 +157,56 @@ window.COURSES = {
 
   // ── Core Curriculum (CC/GS) ────────────────────────────────
   "CORE_LHUM1": {
-    code: "HUMA C1001", name: "Literature Humanities I", credits: 4,
+    code: "HUMA CC1001", name: "Literature Humanities I", credits: 4,
     offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "CORE", category: "core-curriculum",
     description: "Ancient Mediterranean: Homer, Sappho, Aeschylus, Plato, Virgil.",
-    professors: ["Various instructors — small sections"]
+    professors: ["Various instructors, small sections"]
   },
   "CORE_LHUM2": {
-    code: "HUMA C1002", name: "Literature Humanities II", credits: 4,
+    code: "HUMA CC1002", name: "Literature Humanities II", credits: 4,
     offered: ["spring"], prereqs: ["CORE_LHUM1"], difficulty: 2,
     dept: "CORE", category: "core-curriculum",
     description: "Medieval to modern: Dante, Shakespeare, Dostoevsky, Virginia Woolf.",
-    professors: ["Various instructors — small sections"]
+    professors: ["Various instructors, small sections"]
   },
   "CORE_CC1": {
-    code: "CCSC C1101", name: "Contemporary Civilization I", credits: 4,
+    code: "COCI CC1101", name: "Contemporary Civilization I", credits: 4,
     offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "CORE", category: "core-curriculum",
     description: "Western political and moral philosophy: Plato through Kant.",
-    professors: ["Various instructors — small sections"]
+    professors: ["Various instructors, small sections"]
   },
   "CORE_CC2": {
-    code: "CCSC C1102", name: "Contemporary Civilization II", credits: 4,
+    code: "COCI CC1102", name: "Contemporary Civilization II", credits: 4,
     offered: ["spring"], prereqs: ["CORE_CC1"], difficulty: 2,
     dept: "CORE", category: "core-curriculum",
     description: "Political thought from the Enlightenment to the present.",
-    professors: ["Various instructors — small sections"]
+    professors: ["Various instructors, small sections"]
   },
   "CORE_AHUM": {
-    code: "AHUM C1001", name: "Art Humanities", credits: 3,
+    code: "HUMA UN1121", name: "Art Humanities", credits: 3,
     offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "CORE", category: "core-curriculum",
     description: "Major works of Western visual art from Ancient Greece to the present.",
-    professors: ["Various instructors — small sections"]
+    professors: ["Various instructors, small sections"]
   },
   "CORE_MHUM": {
-    code: "MHUM C1001", name: "Music Humanities", credits: 3,
+    code: "HUMA UN1123", name: "Music Humanities", credits: 3,
     offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "CORE", category: "core-curriculum",
     description: "Active listening and analysis of Western music from Gregorian chant to jazz.",
-    professors: ["Various instructors — small sections"]
+    professors: ["Various instructors, small sections"]
   },
   "CORE_WRITE": {
     code: "ENGL C1010", name: "University Writing (CC/GS)", credits: 3,
     offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "CORE", category: "writing",
     description: "Analytical writing in response to literary and non-fiction texts.",
-    professors: ["Various instructors — small sections"]
+    professors: ["Various instructors, small sections"]
   },
   "CORE_FRSCI": {
-    code: "SCEN C1400", name: "Frontiers of Science", credits: 3,
+    code: "SCNC CC1000", name: "Frontiers of Science", credits: 3,
     offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "CORE", category: "core-curriculum",
     description: "Introductory seminar in scientific reasoning across disciplines.",
@@ -278,7 +278,7 @@ window.COURSES = {
     professors: ["Tim Pinkston", "Martha Kim"]
   },
   "COMS4231": {
-    code: "COMS W4231", name: "Analysis of Algorithms", credits: 3,
+    code: "CSOR W4231", name: "Analysis of Algorithms", credits: 3,
     offered: ["fall","spring"], prereqs: ["COMS3261","COMS3134"], difficulty: 5,
     dept: "COMS", category: "core-cs",
     description: "Advanced algorithm design: divide-and-conquer, dynamic programming, greedy algorithms, graph algorithms, NP-completeness, approximation. Considered one of the hardest CS theory courses.",
@@ -293,7 +293,7 @@ window.COURSES = {
   },
   "COMS4705": {
     code: "COMS W4705", name: "Natural Language Processing", credits: 3,
-    offered: ["spring"], prereqs: ["COMS3134","COMS4231"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["COMS3134","COMS4231"], difficulty: 4,
     dept: "COMS", category: "elective",
     description: "Statistical NLP: language models, sequence labeling, parsing, machine translation, question answering, large language models.",
     professors: ["Julia Hirschberg", "Daniel Bauer"]
@@ -307,7 +307,7 @@ window.COURSES = {
   },
   "COMS4118": {
     code: "COMS W4118", name: "Operating Systems I", credits: 3,
-    offered: ["fall"], prereqs: ["CSEE3827"], difficulty: 5,
+    offered: ["fall","spring"], prereqs: ["CSEE3827"], difficulty: 5,
     dept: "COMS", category: "elective",
     description: "Process management, threads, synchronization, memory management, file systems, security. Notorious for heavy kernel programming assignments in C.",
     professors: ["Jason Nieh", "Junfeng Yang"]
@@ -335,14 +335,14 @@ window.COURSES = {
   },
   "COMS4156": {
     code: "COMS W4156", name: "Advanced Software Engineering", credits: 3,
-    offered: ["fall","spring"], prereqs: ["COMS3134"], difficulty: 3,
+    offered: ["fall"], prereqs: ["COMS3134"], difficulty: 3,
     dept: "COMS", category: "elective",
     description: "Software design, testing, CI/CD, agile, team project.",
     professors: ["Gail Kaiser", "Kenneth Ross"]
   },
   "COMS4824": {
-    code: "COMS W4824", name: "Computer Architecture", credits: 3,
-    offered: ["spring"], prereqs: ["CSEE3827"], difficulty: 4,
+    code: "CSEE W4824", name: "Computer Architecture", credits: 3,
+    offered: ["fall"], prereqs: ["CSEE3827"], difficulty: 4,
     dept: "COMS", category: "elective",
     description: "Pipelining, memory hierarchy, parallelism, GPU architecture.",
     professors: ["Martha Kim", "Tim Pinkston"]
@@ -371,29 +371,29 @@ window.COURSES = {
     professors: ["Sunil Gulati", "Brendan O'Flaherty", "Jonathan Rork"]
   },
   "ECON3211": {
-    code: "ECON W3211", name: "Intermediate Microeconomics", credits: 3,
+    code: "ECON UN3211", name: "Intermediate Microeconomics", credits: 3,
     offered: ["fall","spring"], prereqs: ["ECON1105","MATH1101"], difficulty: 3,
     dept: "ECON", category: "economics",
     description: "Consumer theory, production, competitive markets, game theory.",
     professors: ["Brendan O'Flaherty", "Sunil Gulati", "Yeon-Koo Che"]
   },
   "ECON3213": {
-    code: "ECON W3213", name: "Intermediate Macroeconomics", credits: 3,
+    code: "ECON UN3213", name: "Intermediate Macroeconomics", credits: 3,
     offered: ["fall","spring"], prereqs: ["ECON1105","MATH1101"], difficulty: 3,
     dept: "ECON", category: "economics",
     description: "National income, IS-LM, Keynesian models, growth theory, monetary policy.",
     professors: ["Michael Woodford", "Brendan O'Flaherty", "David Weinstein"]
   },
   "ECON3412": {
-    code: "ECON W3412", name: "Introduction to Econometrics", credits: 3,
+    code: "ECON UN3412", name: "Introduction to Econometrics", credits: 3,
     offered: ["fall","spring"], prereqs: ["ECON3211","STAT1201"], difficulty: 4,
     dept: "ECON", category: "economics",
     description: "OLS, instrumental variables, panel data, difference-in-differences.",
     professors: ["Serena Ng", "Miguel Urquiola"]
   },
   "ECON4710": {
-    code: "ECON W4710", name: "Game Theory", credits: 3,
-    offered: ["spring"], prereqs: ["ECON3211"], difficulty: 4,
+    code: "ECON GU4415", name: "Game Theory", credits: 3,
+    offered: ["fall","spring"], prereqs: ["ECON3211"], difficulty: 4,
     dept: "ECON", category: "elective",
     description: "Nash equilibrium, extensive form games, mechanism design, auctions.",
     professors: ["Yeon-Koo Che", "Sunil Gulati"]
@@ -427,7 +427,7 @@ window.COURSES = {
     professors: ["Serena Ng", "Miguel Urquiola"]
   },
   "ECON4999": {
-    code: "ECON W4999", name: "Senior Thesis", credits: 4,
+    code: "ECON GU4999", name: "Senior Thesis", credits: 4,
     offered: ["fall","spring"], prereqs: ["ECON3412"], difficulty: 4,
     dept: "ECON", category: "major",
     description: "Original empirical research paper on an economics topic.",
@@ -449,14 +449,14 @@ window.COURSES = {
   },
   "ECON4280": {
     code: "ECON GU4280", name: "Corporate Finance", credits: 3,
-    offered: ["spring"], prereqs: ["ECON3025","ECON3412"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["ECON3025","ECON3412"], difficulty: 4,
     dept: "ECON", category: "economics",
     description: "Capital structure, valuation, investment decisions, and corporate governance.",
     professors: ["TBA"]
   },
   "ECON4918": {
     code: "ECON GU4918", name: "Seminar in Financial Economics", credits: 4,
-    offered: ["fall","spring"], prereqs: ["ECON3025","ECON3412"], difficulty: 4,
+    offered: ["spring"], prereqs: ["ECON3025","ECON3412"], difficulty: 4,
     dept: "ECON", category: "economics",
     description: "Capstone seminar applying financial-economics theory to current research; fulfills the major's seminar requirement.",
     professors: ["Advisor assigned"]
@@ -520,7 +520,7 @@ window.COURSES = {
     professors: ["Page Fortna", "Gregory Mitrovich"]
   },
   "POLS3200": {
-    code: "POLS W3200", name: "Democracy and Dictatorship", credits: 3,
+    code: "POLS BC1401", name: "Democracy and Dictatorship in Europe", credits: 3,
     offered: ["fall"], prereqs: ["POLS2200"], difficulty: 3,
     dept: "POLS", category: "elective",
     description: "Theories of regime change, democratic backsliding, authoritarian resilience.",
@@ -578,15 +578,15 @@ window.COURSES = {
     professors: ["Barbara Tversky", "Daphna Shohamy"]
   },
   "PSYC3200": {
-    code: "PSYC BC3200", name: "Social Psychology", credits: 3,
+    code: "PSYC UN2630", name: "Social Psychology", credits: 3,
     offered: ["fall"], prereqs: ["PSYC1001"], difficulty: 3,
     dept: "PSYC", category: "major",
     description: "Attitudes, persuasion, conformity, attraction, prejudice, helping behavior.",
     professors: ["Geraldine Downey"]
   },
   "PSYC3300": {
-    code: "PSYC BC3300", name: "Developmental Psychology", credits: 3,
-    offered: ["spring"], prereqs: ["PSYC1001"], difficulty: 3,
+    code: "PSYC BC2129", name: "Developmental Psychology", credits: 3,
+    offered: ["fall","spring"], prereqs: ["PSYC1001"], difficulty: 3,
     dept: "PSYC", category: "major",
     description: "Cognitive, social, and emotional development from infancy to adulthood.",
     professors: ["Nim Tottenham"]
@@ -665,7 +665,7 @@ window.COURSES = {
   },
   "HIST2701": {
     code: "HIST UN2701", name: "The Ottoman Empire", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "HIST", category: "elective",
     description: "Rise, expansion, and transformation of the Ottoman Empire from 1300 to the twentieth century.",
     professors: ["TBA"]
@@ -686,7 +686,7 @@ window.COURSES = {
   },
   "HIST2344": {
     code: "HIST UN2344", name: "World Economy, Empire and War, 1900–50", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "HIST", category: "elective",
     description: "Global economic integration, empire, and the two world wars in the first half of the twentieth century.",
     professors: ["TBA"]
@@ -701,7 +701,7 @@ window.COURSES = {
 
   // ── English (CC) ───────────────────────────────────────────
   "ENGL2000": {
-    code: "ENGL W2000", name: "Introduction to Literary Studies", credits: 3,
+    code: "ENGL UN2000", name: "Approaches to Literary Study", credits: 3,
     offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "ENGL", category: "major",
     description: "Literary analysis: close reading, genre, form, and critical approaches.",
@@ -744,7 +744,7 @@ window.COURSES = {
   },
   "ENGL3329": {
     code: "ENGL UN3329", name: "What Shakespeare Read", credits: 3,
-    offered: ["spring"], prereqs: ["ENGL2000"], difficulty: 4,
+    offered: ["fall"], prereqs: ["ENGL2000"], difficulty: 4,
     dept: "ENGL", category: "elective",
     description: "Shakespeare's sources and reading: the classical, biblical, and Renaissance texts behind the plays.",
     professors: ["TBA"]
@@ -758,7 +758,7 @@ window.COURSES = {
   },
   "ENGL3055": {
     code: "ENGL UN3055", name: "US Poetry of the 1960s", credits: 3,
-    offered: ["spring"], prereqs: ["ENGL2000"], difficulty: 3,
+    offered: ["fall"], prereqs: ["ENGL2000"], difficulty: 3,
     dept: "ENGL", category: "elective",
     description: "American poetry and poetics of the 1960s and the era's social movements.",
     professors: ["TBA"]
@@ -771,7 +771,7 @@ window.COURSES = {
     professors: ["TBA"]
   },
   "ENGL4000": {
-    code: "ENGL W4000", name: "Senior Seminar in English", credits: 4,
+    code: "ENGL BC3997", name: "Senior Seminar in English", credits: 4,
     offered: ["fall"], prereqs: ["ENGL3300"], difficulty: 4,
     dept: "ENGL", category: "major",
     description: "Capstone seminar; produce a substantial original critical essay.",
@@ -781,21 +781,21 @@ window.COURSES = {
   // ── Electrical Engineering (SEAS) ─────────────────────────
   "ELEN3082": {
     code: "ELEN E3082", name: "Electrical Circuits", credits: 3,
-    offered: ["fall","spring"], prereqs: ["PHYS1402","MATH3027"], difficulty: 3,
+    offered: ["spring"], prereqs: ["PHYS1402","MATH3027"], difficulty: 3,
     dept: "ELEN", category: "major",
     description: "Circuit analysis, Thevenin/Norton, AC circuits, Laplace methods.",
     professors: ["Predrag Jelenkovic", "Yannis Tsividis"]
   },
   "ELEN3106": {
     code: "ELEN E3106", name: "Signals and Systems", credits: 3,
-    offered: ["fall","spring"], prereqs: ["ELEN3082","MATH3027"], difficulty: 4,
+    offered: ["fall"], prereqs: ["ELEN3082","MATH3027"], difficulty: 4,
     dept: "ELEN", category: "major",
     description: "Continuous and discrete signals, Fourier transforms, filtering, sampling.",
     professors: ["Predrag Jelenkovic"]
   },
   "ELEN3401": {
     code: "ELEN E3401", name: "Electronic Devices I", credits: 3,
-    offered: ["fall"], prereqs: ["PHYS1402","CHEM1403"], difficulty: 4,
+    offered: ["spring"], prereqs: ["PHYS1402","CHEM1403"], difficulty: 4,
     dept: "ELEN", category: "major",
     description: "Semiconductor physics, p-n junctions, diodes, BJT, MOSFET.",
     professors: ["Yannis Tsividis"]
@@ -846,7 +846,7 @@ window.COURSES = {
   },
   "APMA4200": {
     code: "APMA E4200", name: "Partial Differential Equations", credits: 3,
-    offered: ["fall"], prereqs: ["APMA3101","MATH4061"], difficulty: 5,
+    offered: ["fall","spring"], prereqs: ["APMA3101","MATH4061"], difficulty: 5,
     dept: "APMA", category: "elective",
     description: "Elliptic, parabolic, and hyperbolic PDEs; Sobolev spaces.",
     professors: ["Guillaume Bal"]
@@ -862,36 +862,36 @@ window.COURSES = {
 
   // ── Biology ────────────────────────────────────────────────
   "BIOL1500": {
-    code: "BIOL UN1500", name: "Introductory Biology I", credits: 3,
-    offered: ["fall","spring"], prereqs: [], difficulty: 3,
+    code: "BIOL BC1500", name: "Introductory Biology I", credits: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "BIOL", category: "science",
     description: "Cell biology, genetics, evolution, and diversity of life.",
     professors: ["Molly Przeworski", "Darcy Kelley"]
   },
   "BIOL1501": {
-    code: "BIOL UN1501", name: "Introductory Biology II", credits: 3,
-    offered: ["spring"], prereqs: ["BIOL1500"], difficulty: 3,
+    code: "BIOL BC1501", name: "Introductory Lab in Organismal and Evolutionary Biology", credits: 3,
+    offered: ["fall"], prereqs: ["BIOL1500"], difficulty: 3,
     dept: "BIOL", category: "science",
     description: "Ecology, animal physiology, plant biology, and behavior.",
     professors: ["Darcy Kelley"]
   },
   "CHEM1404": {
-    code: "CHEM 1404", name: "General Chemistry II", credits: 4,
-    offered: ["spring"], prereqs: ["CHEM1403"], difficulty: 3,
+    code: "CHEM UN1404", name: "General Chemistry II", credits: 4,
+    offered: ["fall","spring"], prereqs: ["CHEM1403"], difficulty: 3,
     dept: "CHEM", category: "science",
     description: "Kinetics, electrochemistry, coordination chemistry, nuclear chemistry.",
     professors: ["Ann McDermott"]
   },
   "BIOL2401": {
-    code: "BIOL W2401", name: "Molecular Biology", credits: 3,
-    offered: ["fall","spring"], prereqs: ["BIOL1500","CHEM1403"], difficulty: 4,
+    code: "BIOL GU4512", name: "Molecular Biology", credits: 3,
+    offered: ["spring"], prereqs: ["BIOL1500","CHEM1403"], difficulty: 4,
     dept: "BIOL", category: "science",
     description: "DNA replication, transcription, translation, regulation of gene expression.",
     professors: ["Molly Przeworski"]
   },
   "BIOL3004": {
-    code: "BIOL W3004", name: "Genetics", credits: 3,
-    offered: ["fall"], prereqs: ["BIOL1500"], difficulty: 3,
+    code: "BIOL UN3031", name: "Genetics", credits: 3,
+    offered: ["spring"], prereqs: ["BIOL1500"], difficulty: 3,
     dept: "BIOL", category: "science",
     description: "Mendelian genetics, linkage, mutation, genomics, population genetics.",
     professors: ["Molly Przeworski"]
@@ -906,15 +906,15 @@ window.COURSES = {
     professors: ["Shamus Khan", "Herbert Gans", "Sudhir Venkatesh"]
   },
   "SOCI2001": {
-    code: "SOCI W2001", name: "Social Theory", credits: 3,
+    code: "SOCI UN3000", name: "Social Theory", credits: 3,
     offered: ["fall","spring"], prereqs: ["SOCI1010"], difficulty: 3,
     dept: "SOCI", category: "major",
     description: "Classical and contemporary theory: Marx, Weber, Durkheim, Bourdieu, Foucault.",
     professors: ["Shamus Khan"]
   },
   "SOCI3000": {
-    code: "SOCI W3000", name: "Research Methods in Sociology", credits: 3,
-    offered: ["fall"], prereqs: ["SOCI1010"], difficulty: 3,
+    code: "SOCI UN3010", name: "Methods for Social Research", credits: 3,
+    offered: ["fall","spring"], prereqs: ["SOCI1010"], difficulty: 3,
     dept: "SOCI", category: "major",
     description: "Quantitative and qualitative methods, survey design, ethnography.",
     professors: ["Herbert Gans", "Shamus Khan"]
@@ -942,21 +942,21 @@ window.COURSES = {
   },
   "SOCI3235": {
     code: "SOCI UN3235", name: "Social Movements", credits: 3,
-    offered: ["spring"], prereqs: ["SOCI1010"], difficulty: 3,
+    offered: ["fall"], prereqs: ["SOCI1010"], difficulty: 3,
     dept: "SOCI", category: "elective",
     description: "The emergence, dynamics, and outcomes of social movements and collective action.",
     professors: ["TBA"]
   },
   "SOCI3265": {
     code: "SOCI UN3265", name: "Sociology of Work and Gender", credits: 3,
-    offered: ["fall"], prereqs: ["SOCI1010"], difficulty: 3,
+    offered: ["spring"], prereqs: ["SOCI1010"], difficulty: 3,
     dept: "SOCI", category: "elective",
     description: "Gender, labor markets, and the organization of paid and unpaid work.",
     professors: ["TBA"]
   },
   "SOCI3914": {
     code: "SOCI UN3914", name: "Inequality, Poverty, and Mobility", credits: 3,
-    offered: ["spring"], prereqs: ["SOCI1010"], difficulty: 3,
+    offered: ["fall"], prereqs: ["SOCI1010"], difficulty: 3,
     dept: "SOCI", category: "elective",
     description: "Causes and consequences of economic inequality, poverty, and social mobility.",
     professors: ["TBA"]
@@ -972,13 +972,13 @@ window.COURSES = {
   // ── Philosophy ─────────────────────────────────────────────
   "PHIL1401": {
     code: "PHIL UN1401", name: "Introduction to Philosophy", credits: 3,
-    offered: ["fall","spring"], prereqs: [], difficulty: 2,
+    offered: ["spring"], prereqs: [], difficulty: 2,
     dept: "PHIL", category: "major",
     description: "Knowledge, mind, ethics, free will, and the existence of God.",
     professors: ["Akeel Bilgrami", "Justin Clarke-Doane"]
   },
   "PHIL2110": {
-    code: "PHIL W2110", name: "History of Ancient Philosophy", credits: 3,
+    code: "PHIL UN2101", name: "History of Philosophy I", credits: 3,
     offered: ["fall"], prereqs: ["PHIL1401"], difficulty: 3,
     dept: "PHIL", category: "major",
     description: "Pre-Socratics, Plato, Aristotle, and Hellenistic philosophy.",
@@ -992,8 +992,8 @@ window.COURSES = {
     professors: ["Christia Mercer", "Akeel Bilgrami"]
   },
   "PHIL3010": {
-    code: "PHIL W3010", name: "Ethics", credits: 3,
-    offered: ["fall","spring"], prereqs: ["PHIL1401"], difficulty: 3,
+    code: "PHIL UN3701", name: "Ethics", credits: 3,
+    offered: ["fall"], prereqs: ["PHIL1401"], difficulty: 3,
     dept: "PHIL", category: "elective",
     description: "Consequentialism, deontology, virtue ethics, and applied ethics.",
     professors: ["Justin Clarke-Doane", "Akeel Bilgrami"]
@@ -1006,7 +1006,7 @@ window.COURSES = {
     professors: ["Akeel Bilgrami"]
   },
   "PHIL3600": {
-    code: "PHIL W3600", name: "Logic", credits: 3,
+    code: "PHIL UN3411", name: "Symbolic Logic", credits: 3,
     offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "PHIL", category: "elective",
     description: "Propositional logic, predicate logic, formal proofs, and metalogic.",
@@ -1021,14 +1021,14 @@ window.COURSES = {
   },
   "PHIL3601": {
     code: "PHIL UN3601", name: "Metaphysics", credits: 3,
-    offered: ["spring"], prereqs: ["PHIL1401"], difficulty: 4,
+    offered: ["fall"], prereqs: ["PHIL1401"], difficulty: 4,
     dept: "PHIL", category: "elective",
     description: "Existence, identity, time, causation, and the fundamental structure of reality.",
     professors: ["TBA"]
   },
   "PHIL3751": {
     code: "PHIL UN3751", name: "Political Philosophy", credits: 3,
-    offered: ["fall"], prereqs: ["PHIL1401"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["PHIL1401"], difficulty: 4,
     dept: "PHIL", category: "elective",
     description: "Justice, authority, liberty, and equality in the Western political tradition.",
     professors: ["TBA"]
@@ -1058,7 +1058,7 @@ window.COURSES = {
   },
   "MECE3420": {
     code: "MECE E3420", name: "Mechanics of Solids", credits: 3,
-    offered: ["fall","spring"], prereqs: ["PHYS1401","MATH3027"], difficulty: 3,
+    offered: ["fall"], prereqs: ["PHYS1401","MATH3027"], difficulty: 3,
     dept: "MECE", category: "major",
     description: "Stress, strain, beam bending, torsion, failure theories.",
     professors: ["Arvind Narayanaswamy"]
@@ -1079,7 +1079,7 @@ window.COURSES = {
   },
   "MECE4602": {
     code: "MECE E4602", name: "Fluid Mechanics", credits: 3,
-    offered: ["fall","spring"], prereqs: ["PHYS1402","MATH1201"], difficulty: 4,
+    offered: ["fall"], prereqs: ["PHYS1402","MATH1201"], difficulty: 4,
     dept: "MECE", category: "major",
     description: "Fluid statics, Bernoulli, Navier-Stokes, boundary layers, turbulence.",
     professors: ["Yuan Yang"]
@@ -1146,7 +1146,7 @@ window.COURSES = {
   },
   "BMEN4550": {
     code: "BMEN E4550", name: "Biomechanics", credits: 3,
-    offered: ["fall"], prereqs: ["BMEN1004","PHYS1401","MATH2010"], difficulty: 4,
+    offered: ["spring"], prereqs: ["BMEN1004","PHYS1401","MATH2010"], difficulty: 4,
     dept: "BMEN", category: "major",
     description: "Mechanics of cells, tissues, bones, joints, and cardiovascular system.",
     professors: ["Lance Kam"]
@@ -1176,14 +1176,14 @@ window.COURSES = {
   },
   "IEOR3106": {
     code: "IEOR E3106", name: "Introduction to Operations Research", credits: 3,
-    offered: ["fall","spring"], prereqs: ["MATH2010","STAT4109"], difficulty: 3,
+    offered: ["fall"], prereqs: ["MATH2010","STAT4109"], difficulty: 3,
     dept: "IEOR", category: "major",
     description: "Linear programming, network flows, integer programming, duality.",
     professors: ["Karl Sigman", "Daniel Lacker"]
   },
   "IEOR3600": {
-    code: "IEOR E3600", name: "Stochastic Models", credits: 3,
-    offered: ["spring"], prereqs: ["STAT4109"], difficulty: 4,
+    code: "IEOR E4106", name: "Stochastic Models", credits: 3,
+    offered: ["fall","spring"], prereqs: ["STAT4109"], difficulty: 4,
     dept: "IEOR", category: "major",
     description: "Markov chains, queuing theory, renewal theory, simulation.",
     professors: ["Karl Sigman"]
@@ -1212,21 +1212,21 @@ window.COURSES = {
     professors: ["Tian Zheng", "Bodhi Sen"]
   },
   "STAT4205": {
-    code: "STAT W4205", name: "Linear Regression Models", credits: 3,
-    offered: ["fall"], prereqs: ["STAT3001","MATH2010"], difficulty: 3,
+    code: "STAT GU4205", name: "Linear Regression Models", credits: 3,
+    offered: ["fall","spring"], prereqs: ["STAT3001","MATH2010"], difficulty: 3,
     dept: "STAT", category: "elective",
     description: "Simple and multiple regression, diagnostics, ANOVA, model selection.",
     professors: ["Tian Zheng"]
   },
-  "STAT4315": {
-    code: "STAT W4315", name: "Statistical Inference", credits: 3,
-    offered: ["spring"], prereqs: ["STAT3001"], difficulty: 4,
-    dept: "STAT", category: "elective",
-    description: "Likelihood, Bayes, minimax, large-sample theory.",
-    professors: ["Bodhi Sen"]
+  "STAT4221": {
+    code: "STAT GU4221", name: "Time Series Analysis", credits: 3,
+    offered: ["fall"], prereqs: ["STAT4204"], difficulty: 4,
+    dept: "STAT", category: "major",
+    description: "ARMA models, forecasting, and spectral analysis of time series.",
+    professors: ["TBA"]
   },
   "STAT4224": {
-    code: "STAT W4224", name: "Bayesian Statistics", credits: 3,
+    code: "STAT GU4224", name: "Bayesian Statistics", credits: 3,
     offered: ["spring"], prereqs: ["STAT3001"], difficulty: 4,
     dept: "STAT", category: "elective",
     description: "Bayesian inference, prior specification, MCMC, hierarchical models.",
@@ -1235,15 +1235,15 @@ window.COURSES = {
 
   // ── Neuroscience and Behavior (NSBV) ───────────────────────
   "NSBV2000": {
-    code: "NSBV UN2000", name: "Introduction to Neuroscience", credits: 3,
+    code: "NSBV BC1001", name: "Introduction to Neuroscience", credits: 3,
     offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "NSBV", category: "major",
     description: "Neurons, synapses, sensory systems, motor control, cognition, and brain disorders.",
     professors: ["Darcy Kelley", "Liam Paninski", "Daphna Shohamy"]
   },
   "NSBV3001": {
-    code: "NSBV W3001", name: "Cellular and Molecular Neuroscience", credits: 3,
-    offered: ["fall"], prereqs: ["NSBV2000","BIOL1500"], difficulty: 4,
+    code: "NSBV BC3361", name: "Cellular and Molecular Neuroscience", credits: 3,
+    offered: ["spring"], prereqs: ["NSBV2000","BIOL1500"], difficulty: 4,
     dept: "NSBV", category: "major",
     description: "Ion channels, action potentials, synaptic transmission, receptor pharmacology.",
     professors: ["Darcy Kelley"]
@@ -1323,15 +1323,15 @@ window.COURSES = {
 
   // ── Film Studies (FILM) ────────────────────────────────────
   "FILM1001": {
-    code: "FILM UN1001", name: "Introduction to Film Studies", credits: 3,
+    code: "FILM UN1000", name: "Introduction to Film and Media Studies", credits: 3,
     offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "FILM", category: "major",
     description: "Language of cinema: mise-en-scène, editing, sound, genre, and narrative.",
     professors: ["Annette Insdorf", "Richard Pena"]
   },
   "FILM2001": {
-    code: "FILM W2001", name: "History of Cinema", credits: 3,
-    offered: ["fall","spring"], prereqs: ["FILM1001"], difficulty: 3,
+    code: "FILM UN2030", name: "Film History: 1960-1990", credits: 3,
+    offered: ["fall"], prereqs: ["FILM1001"], difficulty: 3,
     dept: "FILM", category: "major",
     description: "From early silents to contemporary global cinema; major movements and directors.",
     professors: ["Annette Insdorf", "Richard Pena"]
@@ -1358,7 +1358,7 @@ window.COURSES = {
     professors: ["Richard Pena", "Annette Insdorf"]
   },
   "FILM4001": {
-    code: "FILM W4001", name: "Senior Seminar in Film Studies", credits: 4,
+    code: "FILM UN3900", name: "Senior Seminar in Film Studies", credits: 4,
     offered: ["fall"], prereqs: ["FILM2100"], difficulty: 4,
     dept: "FILM", category: "major",
     description: "Original critical research paper on a film, filmmaker, or theoretical problem.",
@@ -1368,7 +1368,7 @@ window.COURSES = {
   // ── Art History (AHIS) ─────────────────────────────────────
   "AHIS1001": {
     code: "AHIS UN1001", name: "Introduction to Art History", credits: 3,
-    offered: ["fall","spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "AHIS", category: "major",
     description: "How to look at art: form, iconography, patronage, and cultural context.",
     professors: ["Barry Bergdoll", "Simon Schama"]
@@ -1435,7 +1435,7 @@ window.COURSES = {
   },
   "DNCE3001": {
     code: "DNCE BC3001", name: "Choreography", credits: 3,
-    offered: ["spring"], prereqs: ["DNCE2001"], difficulty: 3,
+    offered: ["fall"], prereqs: ["DNCE2001"], difficulty: 3,
     dept: "DNCE", category: "major",
     description: "Principles of choreographic composition; improvisation to structured movement.",
     professors: ["Donna Faye Burchfield"]
@@ -1501,15 +1501,15 @@ window.COURSES = {
     professors: ["Various instructors"]
   },
   "MUSI2501": {
-    code: "MUSI UN2501", name: "Music Theory I", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    code: "MUSI UN2318", name: "Music Theory I", credits: 3,
+    offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "MUSI", category: "major",
     description: "Fundamentals of tonal harmony: scales, intervals, triads, voice leading, basic counterpoint. Piano skills helpful.",
     professors: ["George Lewis"]
   },
   "MUSI2502": {
-    code: "MUSI UN2502", name: "Music Theory II", credits: 3,
-    offered: ["spring"], prereqs: ["MUSI2501"], difficulty: 3,
+    code: "MUSI UN2319", name: "Music Theory II", credits: 3,
+    offered: ["fall","spring"], prereqs: ["MUSI2501"], difficulty: 3,
     dept: "MUSI", category: "major",
     description: "Advanced tonal harmony, secondary dominants, modulation, 20th century techniques.",
     professors: ["George Lewis"]
@@ -1559,8 +1559,8 @@ window.COURSES = {
     professors: ["Elazar Barkan"]
   },
   "HRTS3100": {
-    code: "HRTS UN3100", name: "International Human Rights Law", credits: 3,
-    offered: ["spring"], prereqs: ["HRTS1000"], difficulty: 3,
+    code: "HRTS UN3190", name: "International Human Rights Law", credits: 3,
+    offered: ["fall","spring"], prereqs: ["HRTS1000"], difficulty: 3,
     dept: "HRTS", category: "major",
     description: "UN system, regional mechanisms, international criminal law, genocide convention.",
     professors: ["Mark Mazower"]
@@ -1590,7 +1590,7 @@ window.COURSES = {
   },
   "LING3101": {
     code: "LING UN3101", name: "Syntax", credits: 3,
-    offered: ["fall"], prereqs: ["LING1101"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["LING1101"], difficulty: 4,
     dept: "LING", category: "major",
     description: "Formal syntax: phrase structure, movement, binding theory, generative grammar. Technically demanding.",
     professors: ["Maria Polinsky"]
@@ -1603,7 +1603,7 @@ window.COURSES = {
     professors: ["Maria Polinsky"]
   },
   "LING3200": {
-    code: "LING UN3200", name: "Semantics", credits: 3,
+    code: "LING GU4023", name: "Semantics", credits: 3,
     offered: ["spring"], prereqs: ["LING1101"], difficulty: 3,
     dept: "LING", category: "elective",
     description: "Meaning in natural language: truth conditions, compositionality, quantification, modality, presupposition.",
@@ -1620,21 +1620,21 @@ window.COURSES = {
   // ── Chemistry major (upper-level) ─────────────────────────
   "CHEM2045": {
     code: "CHEM UN2045", name: "Organic Chemistry I", credits: 3,
-    offered: ["fall","spring"], prereqs: ["CHEM1403"], difficulty: 4,
+    offered: ["spring"], prereqs: ["CHEM1403"], difficulty: 4,
     dept: "CHEM", category: "science",
     description: "Structure, bonding, and reactions of organic compounds: alkanes, alkenes, alkynes, stereochemistry, substitution, and elimination.",
     professors: ["Scott Snyder", "Tristan Lambert"]
   },
   "CHEM2046": {
     code: "CHEM UN2046", name: "Organic Chemistry II", credits: 3,
-    offered: ["spring"], prereqs: ["CHEM2045"], difficulty: 4,
+    offered: ["fall"], prereqs: ["CHEM2045"], difficulty: 4,
     dept: "CHEM", category: "science",
     description: "Aromatic compounds, carbonyl chemistry, amines, polymers, spectroscopy (NMR, IR, MS), and multi-step synthesis.",
     professors: ["Tristan Lambert"]
   },
   "CHEM3080": {
     code: "CHEM UN3080", name: "Physical Chemistry I", credits: 3,
-    offered: ["fall"], prereqs: ["CHEM1403","MATH3027","PHYS1402"], difficulty: 5,
+    offered: ["spring"], prereqs: ["CHEM1403","MATH3027","PHYS1402"], difficulty: 5,
     dept: "CHEM", category: "science",
     description: "Quantum mechanics, atomic and molecular structure, spectroscopy. One of the most mathematically demanding chemistry courses.",
     professors: ["Ann McDermott"]
@@ -1677,8 +1677,8 @@ window.COURSES = {
     professors: ["Patricia Culligan", "Upmanu Lall"]
   },
   "CIEN4200": {
-    code: "CIEN E4200", name: "Structural Analysis", credits: 3,
-    offered: ["fall"], prereqs: ["CIEN3030"], difficulty: 4,
+    code: "CIEN E3121", name: "Structural Analysis", credits: 3,
+    offered: ["spring"], prereqs: ["CIEN3030"], difficulty: 4,
     dept: "CIEN", category: "major",
     description: "Statically determinate and indeterminate structures. Force method, displacement method, influence lines.",
     professors: ["Raimondo Betti", "Kuo-Wei Liao"]
@@ -1692,7 +1692,7 @@ window.COURSES = {
   },
   "CIEN4999": {
     code: "CIEN E4999", name: "Civil Engineering Senior Design", credits: 3,
-    offered: ["spring"], prereqs: ["CIEN4200"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["CIEN4200"], difficulty: 3,
     dept: "CIEN", category: "major",
     description: "Capstone design project integrating structural, environmental, and systems engineering principles.",
     professors: ["Advisor assigned"]
@@ -1701,7 +1701,7 @@ window.COURSES = {
   // ── Earth and Environmental Engineering (EAEE) ──────────────
   "EAEE2100": {
     code: "EAEE E2100", name: "Earth Systems Engineering and Management", credits: 3,
-    offered: ["fall","spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "EAEE", category: "science",
     description: "Introduction to the Earth system and engineering design for sustainability. Climate, energy, and environmental policy.",
     professors: ["Dickson Despommier", "Klaus Lackner"]
@@ -1715,7 +1715,7 @@ window.COURSES = {
   },
   "EAEE4000": {
     code: "EAEE E4000", name: "Fate and Transport in Environmental Systems", credits: 3,
-    offered: ["spring"], prereqs: ["EAEE3100","CIEN3210"], difficulty: 4,
+    offered: ["fall"], prereqs: ["EAEE3100","CIEN3210"], difficulty: 4,
     dept: "EAEE", category: "major",
     description: "Mass transport of contaminants in air, water, and soil. Advection, dispersion, chemical kinetics, and fate modeling.",
     professors: ["Wade McGillis", "Upmanu Lall"]
@@ -1752,7 +1752,7 @@ window.COURSES = {
   },
   "APPH4500": {
     code: "APPH E4500", name: "Advanced Laboratory in Applied Physics", credits: 3,
-    offered: ["fall","spring"], prereqs: ["PHYS4003"], difficulty: 3,
+    offered: ["spring"], prereqs: ["PHYS4003"], difficulty: 3,
     dept: "APPH", category: "major",
     description: "Hands-on experiments in optics, nuclear physics, condensed matter, and electronics. Emphasis on scientific writing.",
     professors: ["Instructor TBA"]
@@ -1760,8 +1760,8 @@ window.COURSES = {
 
   // ── Additional Biology (Barnard Biology major) ─────────────
   "BIOL3600": {
-    code: "BIOL W3600", name: "Cell Biology", credits: 3,
-    offered: ["spring"], prereqs: ["BIOL1500","CHEM1403"], difficulty: 4,
+    code: "BIOL UN3041", name: "Cell Biology", credits: 3,
+    offered: ["fall"], prereqs: ["BIOL1500","CHEM1403"], difficulty: 4,
     dept: "BIOL", category: "science",
     description: "Membrane structure, cytoskeleton, cell signaling, mitosis, and cancer biology.",
     professors: ["Molly Przeworski", "Darcy Kelley"]
@@ -1812,14 +1812,14 @@ window.COURSES = {
   },
   "AFAS4080": {
     code: "AFAS GU4080", name: "Black Feminist Imaginaries", credits: 4,
-    offered: ["spring"], prereqs: ["AFAS1001"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["AFAS1001"], difficulty: 3,
     dept: "AFAS", category: "elective",
     description: "Black feminist practices and poethics across literature, art, and theory.",
     professors: ["TBA"]
   },
   "AFAS3940": {
     code: "AFAS UN3940", name: "Senior Thesis Seminar", credits: 4,
-    offered: ["fall"], prereqs: ["AFAS1002"], difficulty: 4,
+    offered: ["spring"], prereqs: ["AFAS1002"], difficulty: 4,
     dept: "AFAS", category: "major",
     description: "Capstone research seminar for African-American studies majors.",
     professors: ["Advisor assigned"]
@@ -1828,14 +1828,14 @@ window.COURSES = {
   // ── American Studies (AMST) ────────────────────────────────
   "AMST1010": {
     code: "AMST UN1010", name: "Introduction to American Studies", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["spring"], prereqs: [], difficulty: 2,
     dept: "AMST", category: "major",
     description: "Interdisciplinary exploration of American values, institutions, and cultural expression.",
     professors: ["TBA"]
   },
   "AMST3933": {
     code: "AMST UN3933", name: "The American Graphic Novel", credits: 4,
-    offered: ["spring"], prereqs: ["AMST1010"], difficulty: 3,
+    offered: ["fall"], prereqs: ["AMST1010"], difficulty: 3,
     dept: "AMST", category: "elective",
     description: "Seminar on the graphic novel as an American literary and visual form.",
     professors: ["TBA"]
@@ -1849,14 +1849,14 @@ window.COURSES = {
   },
   "AMST3943": {
     code: "AMST UN3943", name: "Free Speech in American Society", credits: 4,
-    offered: ["spring"], prereqs: ["AMST1010"], difficulty: 3,
+    offered: ["fall"], prereqs: ["AMST1010"], difficulty: 3,
     dept: "AMST", category: "elective",
     description: "Seminar on the history and law of free expression in America.",
     professors: ["TBA"]
   },
   "AMST3998": {
     code: "AMST UN3995", name: "Senior Thesis in American Studies", credits: 4,
-    offered: ["fall","spring"], prereqs: ["AMST1010"], difficulty: 4,
+    offered: ["fall"], prereqs: ["AMST1010"], difficulty: 4,
     dept: "AMST", category: "major",
     description: "Independent senior thesis in American studies.",
     professors: ["Advisor assigned"]
@@ -1886,21 +1886,21 @@ window.COURSES = {
   },
   "ASTR3102": {
     code: "ASTR UN3102", name: "Planetary Dynamics and Solar System Physics", credits: 3,
-    offered: ["spring"], prereqs: ["ASTR2001"], difficulty: 3,
+    offered: ["fall"], prereqs: ["ASTR2001"], difficulty: 3,
     dept: "ASTR", category: "elective",
     description: "Orbital dynamics, planetary formation, and the physics of the solar system.",
     professors: ["TBA"]
   },
   "ASTR3273": {
     code: "ASTR UN3273", name: "High Energy Astrophysics", credits: 3,
-    offered: ["fall"], prereqs: ["ASTR2002"], difficulty: 4,
+    offered: ["spring"], prereqs: ["ASTR2002"], difficulty: 4,
     dept: "ASTR", category: "elective",
     description: "Neutron stars, black holes, and high-energy phenomena in the universe.",
     professors: ["TBA"]
   },
   "ASTR3646": {
     code: "ASTR UN3646", name: "Observational Astronomy", credits: 3,
-    offered: ["fall"], prereqs: ["ASTR2001"], difficulty: 3,
+    offered: ["spring"], prereqs: ["ASTR2001"], difficulty: 3,
     dept: "ASTR", category: "elective",
     description: "Ground-based observational techniques, instrumentation, and data analysis.",
     professors: ["TBA"]
@@ -1914,7 +1914,7 @@ window.COURSES = {
   },
   "ASTR3997": {
     code: "ASTR UN3997", name: "Senior Thesis in Astronomy", credits: 3,
-    offered: ["fall","spring"], prereqs: ["ASTR2002"], difficulty: 4,
+    offered: ["fall"], prereqs: ["ASTR2002"], difficulty: 4,
     dept: "ASTR", category: "major",
     description: "Independent senior research in astronomy or astrophysics.",
     professors: ["Advisor assigned"]
@@ -1923,35 +1923,35 @@ window.COURSES = {
   // ── Classics (LATN/GREK/CLCV) ──────────────────────────────
   "LATN1101": {
     code: "LATN UN1101", name: "Elementary Latin I", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "CLAS", category: "major",
     description: "Introduction to Latin grammar and reading.",
     professors: ["TBA"]
   },
   "LATN1102": {
     code: "LATN UN1102", name: "Elementary Latin II", credits: 4,
-    offered: ["spring"], prereqs: ["LATN1101"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["LATN1101"], difficulty: 2,
     dept: "CLAS", category: "major",
     description: "Completion of Latin grammar; graded readings from Latin prose.",
     professors: ["TBA"]
   },
   "LATN2101": {
     code: "LATN UN2101", name: "Intermediate Latin I", credits: 4,
-    offered: ["fall"], prereqs: ["LATN1102"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["LATN1102"], difficulty: 3,
     dept: "CLAS", category: "major",
     description: "Readings from Catullus and Cicero with grammar review.",
     professors: ["TBA"]
   },
   "LATN2102": {
     code: "LATN UN2102", name: "Intermediate Latin II", credits: 4,
-    offered: ["spring"], prereqs: ["LATN2101"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["LATN2101"], difficulty: 3,
     dept: "CLAS", category: "major",
     description: "Readings in Latin poetry and prose at the intermediate level.",
     professors: ["TBA"]
   },
   "GREK2102": {
     code: "GREK UN2102", name: "Intermediate Greek II", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "CLAS", category: "major",
     description: "Intermediate readings in ancient Greek poetry and prose.",
     professors: ["TBA"]
@@ -1988,7 +1988,7 @@ window.COURSES = {
   // ── Religion (RELI) ────────────────────────────────────────
   "RELI1612": {
     code: "RELI UN1612", name: "Religion and the History of Hip Hop", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["spring"], prereqs: [], difficulty: 2,
     dept: "RELI", category: "major",
     description: "Gateway course using hip hop to explore religion as an analytical category.",
     professors: ["TBA"]
@@ -2002,14 +2002,14 @@ window.COURSES = {
   },
   "RELI2405": {
     code: "RELI UN2405", name: "Chinese Religious Traditions", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "RELI", category: "major",
     description: "Confucian, Daoist, and Buddhist traditions in China.",
     professors: ["TBA"]
   },
   "RELI3199": {
     code: "RELI UN3199", name: "Theory of Religion", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "RELI", category: "major",
     description: "Required theory course: classic and contemporary approaches to the study of religion.",
     professors: ["TBA"]
@@ -2067,14 +2067,14 @@ window.COURSES = {
   },
   "FREN3409": {
     code: "FREN UN3409", name: "Intro to French & Francophone Studies: History", credits: 3,
-    offered: ["fall"], prereqs: ["FREN3405"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["FREN3405"], difficulty: 3,
     dept: "FREN", category: "major",
     description: "Historical foundations of France and the francophone world.",
     professors: ["TBA"]
   },
   "FREN3410": {
     code: "FREN UN3410", name: "Intro to French & Francophone Studies: Literature", credits: 3,
-    offered: ["spring"], prereqs: ["FREN3405"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["FREN3405"], difficulty: 3,
     dept: "FREN", category: "major",
     description: "Survey of French and francophone literature.",
     professors: ["TBA"]
@@ -2109,7 +2109,7 @@ window.COURSES = {
   },
   "FREN3995": {
     code: "FREN UN3995", name: "Senior Seminar in French", credits: 3,
-    offered: ["fall"], prereqs: ["FREN3409","FREN3410"], difficulty: 4,
+    offered: ["spring"], prereqs: ["FREN3409","FREN3410"], difficulty: 4,
     dept: "FREN", category: "major",
     description: "Capstone seminar for French and francophone studies majors.",
     professors: ["Advisor assigned"]
@@ -2118,35 +2118,35 @@ window.COURSES = {
   // ── Italian (ITAL) ─────────────────────────────────────────
   "ITAL1101": {
     code: "ITAL UN1101", name: "Elementary Italian I", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "ITAL", category: "major",
     description: "Introduction to Italian language and culture.",
     professors: ["TBA"]
   },
   "ITAL1102": {
     code: "ITAL UN1102", name: "Elementary Italian II", credits: 4,
-    offered: ["spring"], prereqs: ["ITAL1101"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["ITAL1101"], difficulty: 2,
     dept: "ITAL", category: "major",
     description: "Completion of elementary Italian.",
     professors: ["TBA"]
   },
   "ITAL2101": {
     code: "ITAL UN2101", name: "Intermediate Italian I", credits: 4,
-    offered: ["fall"], prereqs: ["ITAL1102"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["ITAL1102"], difficulty: 2,
     dept: "ITAL", category: "major",
     description: "Intermediate Italian language.",
     professors: ["TBA"]
   },
   "ITAL2102": {
     code: "ITAL UN2102", name: "Intermediate Italian II", credits: 4,
-    offered: ["spring"], prereqs: ["ITAL2101"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["ITAL2101"], difficulty: 2,
     dept: "ITAL", category: "major",
     description: "Completion of intermediate Italian.",
     professors: ["TBA"]
   },
   "ITAL3335": {
     code: "ITAL UN3335", name: "Advanced Italian I", credits: 3,
-    offered: ["fall"], prereqs: ["ITAL2102"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["ITAL2102"], difficulty: 3,
     dept: "ITAL", category: "major",
     description: "Advanced Italian language through cultural content.",
     professors: ["TBA"]
@@ -2188,7 +2188,7 @@ window.COURSES = {
   },
   "ITAL3993": {
     code: "ITAL UN3993", name: "Senior Thesis / Tutorial in Italian", credits: 3,
-    offered: ["spring"], prereqs: ["ITAL3334"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["ITAL3334"], difficulty: 4,
     dept: "ITAL", category: "major",
     description: "Independent senior research in Italian studies.",
     professors: ["Advisor assigned"]
@@ -2197,28 +2197,28 @@ window.COURSES = {
   // ── German (GERM) ──────────────────────────────────────────
   "GERM1101": {
     code: "GERM UN1101", name: "Elementary German I", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "GERM", category: "major",
     description: "Introduction to German language and culture.",
     professors: ["TBA"]
   },
   "GERM1102": {
     code: "GERM UN1102", name: "Elementary German II", credits: 4,
-    offered: ["spring"], prereqs: ["GERM1101"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["GERM1101"], difficulty: 2,
     dept: "GERM", category: "major",
     description: "Completion of elementary German.",
     professors: ["TBA"]
   },
   "GERM2101": {
     code: "GERM UN2101", name: "Intermediate German I", credits: 4,
-    offered: ["fall"], prereqs: ["GERM1102"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["GERM1102"], difficulty: 2,
     dept: "GERM", category: "major",
     description: "Intermediate German language.",
     professors: ["TBA"]
   },
   "GERM2102": {
     code: "GERM UN2102", name: "Intermediate German II", credits: 4,
-    offered: ["spring"], prereqs: ["GERM2101"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["GERM2101"], difficulty: 2,
     dept: "GERM", category: "major",
     description: "Completion of intermediate German.",
     professors: ["TBA"]
@@ -2267,7 +2267,7 @@ window.COURSES = {
   },
   "GERM4350": {
     code: "GERM GU4350", name: "German Film After 1945", credits: 3,
-    offered: ["spring"], prereqs: ["GERM3333"], difficulty: 3,
+    offered: ["fall"], prereqs: ["GERM3333"], difficulty: 3,
     dept: "GERM", category: "elective",
     description: "Postwar and contemporary German cinema.",
     professors: ["TBA"]
@@ -2339,7 +2339,7 @@ window.COURSES = {
   },
   "RUSS4039": {
     code: "CLRS GU4039", name: "Chekhov and Others", credits: 3,
-    offered: ["fall"], prereqs: ["RUSS3220"], difficulty: 3,
+    offered: ["spring"], prereqs: ["RUSS3220"], difficulty: 3,
     dept: "RUSS", category: "elective",
     description: "Chekhov in the context of Russian and world drama.",
     professors: ["TBA"]
@@ -2376,14 +2376,14 @@ window.COURSES = {
   },
   "ASCE1359": {
     code: "ASCE UN1359", name: "Intro to East Asian Civilization: China", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "EAAS", category: "major",
     description: "Survey of Chinese civilization from antiquity to the present.",
     professors: ["TBA"]
   },
   "ASCE1361": {
     code: "ASCE UN1361", name: "Intro to East Asian Civilization: Japan", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "EAAS", category: "major",
     description: "Survey of Japanese civilization from antiquity to the present.",
     professors: ["TBA"]
@@ -2462,7 +2462,7 @@ window.COURSES = {
   },
   "MDES3000": {
     code: "MDES UN3000", name: "Theory and Culture", credits: 4,
-    offered: ["fall"], prereqs: ["MDES1003"], difficulty: 3,
+    offered: ["spring"], prereqs: ["MDES1003"], difficulty: 3,
     dept: "MDES", category: "major",
     description: "Required core seminar in theory, typically junior or senior year.",
     professors: ["TBA"]
@@ -2476,14 +2476,14 @@ window.COURSES = {
   },
   "MDES3042": {
     code: "MDES UN3042", name: "Palestinian-Israeli Politics and Society", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["spring"], prereqs: [], difficulty: 3,
     dept: "MDES", category: "elective",
     description: "History and politics of Palestine and Israel.",
     professors: ["TBA"]
   },
   "MDES4122": {
     code: "MDES GU4122", name: "The Novel in Africa", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "MDES", category: "elective",
     description: "The African novel from decolonization to the present.",
     professors: ["TBA"]
@@ -2499,21 +2499,21 @@ window.COURSES = {
   // ── Architecture (ARCH) ────────────────────────────────────
   "ARCH1010": {
     code: "ARCH UN1010", name: "Design Futures: New York City", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "ARCH", category: "major",
     description: "Introduction to architectural thinking through the city of New York.",
     professors: ["TBA"]
   },
   "ARCH2101": {
     code: "ARCH UN2101", name: "Architectural Design: Systems and Materials", credits: 4,
-    offered: ["fall"], prereqs: ["ARCH1010"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["ARCH1010"], difficulty: 3,
     dept: "ARCH", category: "major",
     description: "First design studio: systems, materials, and representation.",
     professors: ["TBA"]
   },
   "ARCH2103": {
     code: "ARCH UN2103", name: "Architectural Design: Environments and Mediations", credits: 4,
-    offered: ["spring"], prereqs: ["ARCH2101"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["ARCH2101"], difficulty: 3,
     dept: "ARCH", category: "major",
     description: "Second design studio: environments, media, and mediation.",
     professors: ["TBA"]
@@ -2534,14 +2534,14 @@ window.COURSES = {
   },
   "ARCH3120": {
     code: "ARCH UN3120", name: "City, Landscape, and Ecology", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "ARCH", category: "elective",
     description: "Urban landscapes and ecological thinking in design.",
     professors: ["TBA"]
   },
   "ARCH3901": {
     code: "ARCH UN3901", name: "Senior Seminar in Architecture", credits: 3,
-    offered: ["spring"], prereqs: ["ARCH3117"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["ARCH3117"], difficulty: 4,
     dept: "ARCH", category: "major",
     description: "Capstone seminar; portfolio and research writing sample.",
     professors: ["Advisor assigned"]
@@ -2564,7 +2564,7 @@ window.COURSES = {
   },
   "CPLS4227": {
     code: "CPLS GU4227", name: "Anatomy in Nineteenth-Century Fiction", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "CPLS", category: "elective",
     description: "Blood, guts, and lancets: medicine in the nineteenth-century novel.",
     professors: ["TBA"]
@@ -2585,7 +2585,7 @@ window.COURSES = {
   },
   "CPLS3995": {
     code: "CPLS UN3995", name: "Senior Thesis in Comparative Literature", credits: 3,
-    offered: ["spring"], prereqs: ["CPLS3991"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["CPLS3991"], difficulty: 4,
     dept: "CPLS", category: "major",
     description: "Optional senior thesis.",
     professors: ["Advisor assigned"]
@@ -2615,14 +2615,14 @@ window.COURSES = {
   },
   "WRIT3101": {
     code: "WRIT UN3101", name: "Senior Fiction Workshop", credits: 4,
-    offered: ["fall"], prereqs: ["WRIT3100"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["WRIT3100"], difficulty: 4,
     dept: "WRIT", category: "major",
     description: "Advanced workshop for seniors in the major.",
     professors: ["TBA"]
   },
   "WRIT3137": {
     code: "WRIT UN3137", name: "Plant People (Seminar)", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "WRIT", category: "elective",
     description: "Craft seminar reading literature from a writer's perspective.",
     professors: ["TBA"]
@@ -2638,21 +2638,21 @@ window.COURSES = {
   // ── Earth & Environmental Sciences (EESC) ──────────────────
   "EESC2100": {
     code: "EESC UN2100", name: "Earth's Environmental Systems: The Climate System", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "EESC", category: "science",
     description: "The physics and chemistry of Earth's climate.",
     professors: ["TBA"]
   },
   "EESC2200": {
     code: "EESC UN2200", name: "Earth's Environmental Systems: The Solid Earth", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "EESC", category: "science",
     description: "Plate tectonics, earth materials, and the solid earth system.",
     professors: ["TBA"]
   },
   "EESC2300": {
     code: "EESC UN2300", name: "Earth's Environmental Systems: The Life System", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["spring"], prereqs: [], difficulty: 3,
     dept: "EESC", category: "science",
     description: "The biosphere and its interaction with Earth systems.",
     professors: ["TBA"]
@@ -2666,7 +2666,7 @@ window.COURSES = {
   },
   "EESC4008": {
     code: "EESC GU4008", name: "Introduction to Atmospheric Science", credits: 3,
-    offered: ["spring"], prereqs: ["EESC2100","MATH1101"], difficulty: 4,
+    offered: ["fall"], prereqs: ["EESC2100","MATH1101"], difficulty: 4,
     dept: "EESC", category: "elective",
     description: "Dynamics and thermodynamics of the atmosphere.",
     professors: ["TBA"]
@@ -2680,14 +2680,14 @@ window.COURSES = {
   },
   "EESC4949": {
     code: "EESC GU4949", name: "Introduction to Seismology", credits: 3,
-    offered: ["spring"], prereqs: ["EESC2200","PHYS1401"], difficulty: 4,
+    offered: ["fall"], prereqs: ["EESC2200","PHYS1401"], difficulty: 4,
     dept: "EESC", category: "elective",
     description: "Earthquakes and seismic imaging of Earth's interior.",
     professors: ["TBA"]
   },
   "EESC3901": {
     code: "EESC UN3901", name: "Senior Seminar in Earth Sciences", credits: 3,
-    offered: ["fall"], prereqs: ["EESC2200"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["EESC2200"], difficulty: 4,
     dept: "EESC", category: "major",
     description: "Capstone research seminar (or summer field course).",
     professors: ["Advisor assigned"]
@@ -2703,14 +2703,14 @@ window.COURSES = {
   },
   "EEEB3005": {
     code: "EEEB UN3005", name: "Intro Statistics for Ecology and Evolution", credits: 3,
-    offered: ["spring"], prereqs: ["EEEB2001"], difficulty: 3,
+    offered: ["fall"], prereqs: ["EEEB2001"], difficulty: 3,
     dept: "EEEB", category: "science",
     description: "Statistical methods for ecological and evolutionary data.",
     professors: ["TBA"]
   },
   "EEEB3087": {
     code: "EEEB UN3087", name: "Conservation Biology", credits: 3,
-    offered: ["fall"], prereqs: ["EEEB2001"], difficulty: 3,
+    offered: ["spring"], prereqs: ["EEEB2001"], difficulty: 3,
     dept: "EEEB", category: "elective",
     description: "The science of protecting biodiversity.",
     professors: ["TBA"]
@@ -2731,7 +2731,7 @@ window.COURSES = {
   },
   "EEEB3991": {
     code: "EEEB UN3991", name: "Thesis Research Seminar", credits: 3,
-    offered: ["fall","spring"], prereqs: ["EEEB3005"], difficulty: 4,
+    offered: ["fall"], prereqs: ["EEEB3005"], difficulty: 4,
     dept: "EEEB", category: "major",
     description: "Senior thesis seminar with summer research internship.",
     professors: ["Advisor assigned"]
@@ -2740,14 +2740,14 @@ window.COURSES = {
   // ── Cognitive Science (COGS) ───────────────────────────────
   "COGS1001": {
     code: "COGS UN1001", name: "Introduction to Cognitive Science", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "COGS", category: "major",
     description: "Foundational survey of mind and cognition across disciplines.",
     professors: ["TBA"]
   },
   "COGS3903": {
     code: "COGS UN3903", name: "Senior Project in Cognitive Science", credits: 4,
-    offered: ["fall","spring"], prereqs: ["COGS1001"], difficulty: 4,
+    offered: ["fall"], prereqs: ["COGS1001"], difficulty: 4,
     dept: "COGS", category: "major",
     description: "Year-long capstone research project.",
     professors: ["Advisor assigned"]
@@ -2777,7 +2777,7 @@ window.COURSES = {
   },
   "CSER3919": {
     code: "CSER UN3919", name: "Modes of Inquiry", credits: 4,
-    offered: ["spring"], prereqs: ["CSER1010"], difficulty: 3,
+    offered: ["fall"], prereqs: ["CSER1010"], difficulty: 3,
     dept: "CSER", category: "major",
     description: "Research methods in ethnicity and race studies.",
     professors: ["TBA"]
@@ -2791,14 +2791,14 @@ window.COURSES = {
   },
   "CSER3926": {
     code: "CSER UN3926", name: "Latin Music and Identity", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "CSER", category: "elective",
     description: "Latin music as a site of identity and politics.",
     professors: ["TBA"]
   },
   "CSER3990": {
     code: "CSER UN3990", name: "Senior Project Seminar", credits: 4,
-    offered: ["fall"], prereqs: ["CSER3919"], difficulty: 4,
+    offered: ["spring"], prereqs: ["CSER3919"], difficulty: 4,
     dept: "CSER", category: "major",
     description: "Capstone research seminar.",
     professors: ["Advisor assigned"]
@@ -2842,14 +2842,14 @@ window.COURSES = {
   },
   "SPAN3349": {
     code: "SPAN UN3349", name: "Hispanic Cultures I", credits: 3,
-    offered: ["fall"], prereqs: ["SPAN3300"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["SPAN3300"], difficulty: 3,
     dept: "SPAN", category: "major",
     description: "Iberian and Latin American cultures from the medieval period through 1700.",
     professors: ["TBA"]
   },
   "SPAN3350": {
     code: "SPAN UN3350", name: "Hispanic Cultures II", credits: 3,
-    offered: ["spring"], prereqs: ["SPAN3300"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["SPAN3300"], difficulty: 3,
     dept: "SPAN", category: "major",
     description: "Hispanic cultures from the eighteenth century onward.",
     professors: ["TBA"]
@@ -2872,35 +2872,35 @@ window.COURSES = {
   // ── Sustainable Development (SDEV) ─────────────────────────
   "SDEV2300": {
     code: "SDEV UN2300", name: "Challenges of Sustainable Development", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["spring"], prereqs: [], difficulty: 2,
     dept: "SDEV", category: "major",
     description: "Foundational survey of sustainable development challenges.",
     professors: ["TBA"]
   },
   "EESC2330": {
     code: "EESC UN2330", name: "Science for Sustainable Development", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "EESC", category: "science",
     description: "Earth-system science underpinning sustainable development.",
     professors: ["TBA"]
   },
   "SDEV3355": {
     code: "SDEV UN3355", name: "Climate Change and Law", credits: 3,
-    offered: ["fall"], prereqs: ["SDEV2300"], difficulty: 3,
+    offered: ["spring"], prereqs: ["SDEV2300"], difficulty: 3,
     dept: "SDEV", category: "elective",
     description: "Legal frameworks for climate mitigation and adaptation.",
     professors: ["TBA"]
   },
   "SDEV3390": {
     code: "SDEV UN3390", name: "GIS for Sustainable Development", credits: 3,
-    offered: ["spring"], prereqs: ["SDEV2300"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["SDEV2300"], difficulty: 3,
     dept: "SDEV", category: "elective",
     description: "Geographic information systems for development analysis.",
     professors: ["TBA"]
   },
   "SDEV3410": {
     code: "SDEV UN3410", name: "Cities and Sustainability", credits: 3,
-    offered: ["fall"], prereqs: ["SDEV2300"], difficulty: 3,
+    offered: ["spring"], prereqs: ["SDEV2300"], difficulty: 3,
     dept: "SDEV", category: "elective",
     description: "Urban systems and sustainable city-making.",
     professors: ["TBA"]
@@ -2914,7 +2914,7 @@ window.COURSES = {
   },
   "SDEV3280": {
     code: "SDEV UN3280", name: "Workshop in Sustainable Development", credits: 4,
-    offered: ["spring"], prereqs: ["SDEV2300","EESC2330"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["SDEV2300","EESC2330"], difficulty: 4,
     dept: "SDEV", category: "major",
     description: "Practicum/capstone workshop on a real-world sustainability problem.",
     professors: ["Advisor assigned"]
@@ -2930,28 +2930,28 @@ window.COURSES = {
   },
   "VIAR2100": {
     code: "VIAR UN2100", name: "Painting I", credits: 3,
-    offered: ["fall"], prereqs: ["VIAR1000"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["VIAR1000"], difficulty: 2,
     dept: "VIAR", category: "major",
     description: "Introduction to painting skills and concepts.",
     professors: ["TBA"]
   },
   "VIAR2300": {
     code: "VIAR UN2300", name: "Sculpture I", credits: 3,
-    offered: ["spring"], prereqs: ["VIAR1000"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["VIAR1000"], difficulty: 2,
     dept: "VIAR", category: "major",
     description: "Wood, metal, and plaster casting fundamentals.",
     professors: ["TBA"]
   },
   "VIAR2420": {
     code: "VIAR UN2420", name: "Printmaking I: Intaglio", credits: 3,
-    offered: ["fall"], prereqs: ["VIAR1000"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["VIAR1000"], difficulty: 2,
     dept: "VIAR", category: "major",
     description: "Intaglio process: line etching and related techniques.",
     professors: ["TBA"]
   },
   "VIAR3500": {
     code: "VIAR UN3500", name: "Introduction to Moving Image", credits: 3,
-    offered: ["spring"], prereqs: ["VIAR1000"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["VIAR1000"], difficulty: 3,
     dept: "VIAR", category: "major",
     description: "Digital video production and editing workshop.",
     professors: ["TBA"]
@@ -2965,7 +2965,7 @@ window.COURSES = {
   },
   "VIAR3900": {
     code: "VIAR UN3900", name: "Senior Thesis I", credits: 2,
-    offered: ["fall"], prereqs: ["VIAR3330"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["VIAR3330"], difficulty: 4,
     dept: "VIAR", category: "major",
     description: "First semester of the senior thesis exhibition project.",
     professors: ["Advisor assigned"]
@@ -3009,14 +3009,14 @@ window.COURSES = {
   },
   "WMST3600": {
     code: "WMST UN3600", name: "The Politics of Food", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "WMST", category: "elective",
     description: "Food through raced and gendered power dynamics.",
     professors: ["TBA"]
   },
   "WMST4210": {
     code: "WMST GU4210", name: "Black Geographies", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "WMST", category: "elective",
     description: "Black place-making as political struggle and world-making.",
     professors: ["TBA"]
@@ -3039,7 +3039,7 @@ window.COURSES = {
   },
   "GAPP2150": {
     code: "GAPP IA2150", name: "Policymaking: Politics, Ethics, and Communication", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "GAPP", category: "major",
     description: "How policy is made, argued, and communicated.",
     professors: ["TBA"]
@@ -3062,14 +3062,14 @@ window.COURSES = {
   // ── Public Health (PUBH — special program/minor) ───────────
   "PUBH3100": {
     code: "PUBH UN3100", name: "Fundamentals of Global Health", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["spring"], prereqs: [], difficulty: 2,
     dept: "PUBH", category: "elective",
     description: "Global patterns of health, disease, and health systems.",
     professors: ["TBA"]
   },
   "PUBH3200": {
     code: "PUBH UN3200", name: "Introduction to Public Health", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "PUBH", category: "elective",
     description: "Core concepts and methods of public health.",
     professors: ["TBA"]
@@ -3122,7 +3122,7 @@ window.COURSES = {
   },
   "MSAE3012": {
     code: "MSAE E3012", name: "Laboratory in Materials Science I", credits: 2,
-    offered: ["spring"], prereqs: ["MSAE3010"], difficulty: 3,
+    offered: ["fall"], prereqs: ["MSAE3010"], difficulty: 3,
     dept: "MSAE", category: "major",
     description: "Experimental methods in materials characterization.",
     professors: ["TBA"]
@@ -3143,7 +3143,7 @@ window.COURSES = {
   },
   "MSAE4102": {
     code: "MSAE E4102", name: "Synthesis and Processing of Materials", credits: 3,
-    offered: ["fall"], prereqs: ["MSAE3201"], difficulty: 4,
+    offered: ["spring"], prereqs: ["MSAE3201"], difficulty: 4,
     dept: "MSAE", category: "elective",
     description: "How materials are made: synthesis routes and processing.",
     professors: ["TBA"]
@@ -3157,14 +3157,14 @@ window.COURSES = {
   },
   "MSAE4215": {
     code: "MSAE E4215", name: "Mechanical Behavior of Materials", credits: 3,
-    offered: ["fall"], prereqs: ["MSAE3010"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["MSAE3010"], difficulty: 4,
     dept: "MSAE", category: "elective",
     description: "Deformation, fracture, and strengthening mechanisms.",
     professors: ["TBA"]
   },
   "MSAE3156": {
     code: "MSAE E3156", name: "Design Project", credits: 3,
-    offered: ["spring"], prereqs: ["MSAE3201"], difficulty: 4,
+    offered: ["fall"], prereqs: ["MSAE3201"], difficulty: 4,
     dept: "MSAE", category: "major",
     description: "Team-based materials design project.",
     professors: ["Advisor assigned"]
@@ -3180,7 +3180,7 @@ window.COURSES = {
   },
   "AFAS3001": {
     code: "AFAS UN3001", name: "The Nonfiction Writing of Ntozake Shange", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["spring"], prereqs: [], difficulty: 3,
     dept: "AFAS", category: "elective",
     description: "Sing a Black girl's song: Shange's essays and nonfiction.",
     professors: ["TBA"]
@@ -3210,7 +3210,7 @@ window.COURSES = {
   // ── Depth pass: AMST ───────────────────────────────────────
   "AMST3930": {
     code: "AMST UN3930", name: "Topics in American Studies", credits: 4,
-    offered: ["fall","spring"], prereqs: ["AMST1010"], difficulty: 3,
+    offered: ["fall"], prereqs: ["AMST1010"], difficulty: 3,
     dept: "AMST", category: "elective",
     description: "Rotating topics seminar in American studies.",
     professors: ["TBA"]
@@ -3233,7 +3233,7 @@ window.COURSES = {
   },
   "ASTR1453": {
     code: "ASTR UN1453", name: "Another Earth", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 1,
+    offered: ["spring"], prereqs: [], difficulty: 1,
     dept: "ASTR", category: "science",
     description: "Exoplanets and the search for habitable worlds.",
     professors: ["TBA"]
@@ -3249,35 +3249,35 @@ window.COURSES = {
   // ── Depth pass: RELI ───────────────────────────────────────
   "RELI1120": {
     code: "RELI UN1120", name: "Love Your Enemies?", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "RELI", category: "major",
     description: "Gateway course on ethics of enmity and love across traditions.",
     professors: ["TBA"]
   },
   "RELI2312": {
     code: "RELI UN2312", name: "Religion and Nasty Women", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "RELI", category: "major",
     description: "Gender, transgression, and religious tradition.",
     professors: ["TBA"]
   },
   "RELI2779": {
     code: "RELI UN2779", name: "Introduction to Native American Religious Traditions", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["spring"], prereqs: [], difficulty: 2,
     dept: "RELI", category: "major",
     description: "Survey of Indigenous North American religious life.",
     professors: ["TBA"]
   },
   "RELI3007": {
     code: "RELI UN3007", name: "Laboring in God's Image: Religion, Labor, and the Human", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["spring"], prereqs: [], difficulty: 3,
     dept: "RELI", category: "elective",
     description: "Religion and the meaning of work.",
     professors: ["TBA"]
   },
   "RELI4216": {
     code: "RELI GU4216", name: "Religion and Capitalism", credits: 4,
-    offered: ["fall"], prereqs: ["RELI3199"], difficulty: 4,
+    offered: ["spring"], prereqs: ["RELI3199"], difficulty: 4,
     dept: "RELI", category: "elective",
     description: "Faith and the American market.",
     professors: ["TBA"]
@@ -3298,7 +3298,7 @@ window.COURSES = {
   },
   "RELI4616": {
     code: "RELI GU4616", name: "Technology, Religion, Future", credits: 4,
-    offered: ["spring"], prereqs: ["RELI3199"], difficulty: 4,
+    offered: ["fall"], prereqs: ["RELI3199"], difficulty: 4,
     dept: "RELI", category: "elective",
     description: "Religion and emerging technologies.",
     professors: ["TBA"]
@@ -3313,7 +3313,7 @@ window.COURSES = {
     professors: ["TBA"]
   },
   "CLCV2441": {
-    code: "CLCV UN2441", name: "Egypt in the Classical World", credits: 4,
+    code: "CLCV GU4411", name: "Egypt in the Classical World", credits: 4,
     offered: ["spring"], prereqs: [], difficulty: 2,
     dept: "CLAS", category: "elective",
     description: "Egypt's place in the Greek and Roman Mediterranean.",
@@ -3321,7 +3321,7 @@ window.COURSES = {
   },
   "CLCV3008": {
     code: "CLCV UN3008", name: "The Age of Augustus", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["spring"], prereqs: [], difficulty: 3,
     dept: "CLAS", category: "elective",
     description: "Rome's transformation under Augustus.",
     professors: ["TBA"]
@@ -3370,7 +3370,7 @@ window.COURSES = {
   },
   "GREK3309": {
     code: "GREK UN3309", name: "Selections from Greek Literature", credits: 3,
-    offered: ["spring"], prereqs: ["GREK2102"], difficulty: 4,
+    offered: ["fall"], prereqs: ["GREK2102"], difficulty: 4,
     dept: "CLAS", category: "major",
     description: "Advanced readings in ancient Greek.",
     professors: ["TBA"]
@@ -3414,7 +3414,7 @@ window.COURSES = {
   },
   "FREN3996": {
     code: "FREN UN3996", name: "Senior Tutorial in Literature", credits: 3,
-    offered: ["spring"], prereqs: ["FREN3995"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["FREN3995"], difficulty: 4,
     dept: "FREN", category: "major",
     description: "Honors senior tutorial with an essay.",
     professors: ["Advisor assigned"]
@@ -3465,7 +3465,7 @@ window.COURSES = {
   },
   "ITAL3865": {
     code: "ITAL UN3865", name: "Introduction to Fashion Studies", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["spring"], prereqs: [], difficulty: 2,
     dept: "ITAL", category: "elective",
     description: "Fashion as Italian cultural industry, in English.",
     professors: ["TBA"]
@@ -3488,7 +3488,7 @@ window.COURSES = {
   },
   "GERM3991": {
     code: "GERM UN3991", name: "Advanced Topics in German Literature", credits: 3,
-    offered: ["spring"], prereqs: ["GERM3333"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["GERM3333"], difficulty: 4,
     dept: "GERM", category: "elective",
     description: "Rotating advanced literature seminar.",
     professors: ["TBA"]
@@ -3518,7 +3518,7 @@ window.COURSES = {
   },
   "CLRS4011": {
     code: "CLRS GU4011", name: "Dostoevsky, Tolstoy, and the English Novel", credits: 3,
-    offered: ["spring"], prereqs: ["RUSS3220"], difficulty: 3,
+    offered: ["fall"], prereqs: ["RUSS3220"], difficulty: 3,
     dept: "RUSS", category: "elective",
     description: "The Russian and English novel in dialogue, in translation.",
     professors: ["TBA"]
@@ -3562,7 +3562,7 @@ window.COURSES = {
   },
   "ASCE1365": {
     code: "ASCE UN1365", name: "Intro to East Asian Civilization: Tibet", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "EAAS", category: "major",
     description: "Survey of Tibetan civilization.",
     professors: ["TBA"]
@@ -3590,7 +3590,7 @@ window.COURSES = {
   },
   "EAAS3217": {
     code: "EAAS UN3217", name: "Korean Popular Cinema", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "EAAS", category: "elective",
     description: "South Korean cinema from the golden age to Hallyu.",
     professors: ["TBA"]
@@ -3604,7 +3604,7 @@ window.COURSES = {
   },
   "EAAS3310": {
     code: "EAAS UN3310", name: "Social Problems in Contemporary China", credits: 3,
-    offered: ["spring"], prereqs: ["ASCE1359"], difficulty: 3,
+    offered: ["fall"], prereqs: ["ASCE1359"], difficulty: 3,
     dept: "EAAS", category: "elective",
     description: "Contemporary Chinese society; background in Chinese history desirable.",
     professors: ["TBA"]
@@ -3627,7 +3627,7 @@ window.COURSES = {
   },
   "MDES1030": {
     code: "MDES UN1030", name: "\"Game of Thrones\": On Epics and Empires", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "MDES", category: "elective",
     description: "Epic literature and empire, from antiquity to fantasy.",
     professors: ["TBA"]
@@ -3641,7 +3641,7 @@ window.COURSES = {
   },
   "ASCM2003": {
     code: "ASCM UN2003", name: "Introduction to Islamic Civilization", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["spring"], prereqs: [], difficulty: 2,
     dept: "MDES", category: "major",
     description: "Approved introductory culture course for the MESAAS major.",
     professors: ["TBA"]
@@ -3662,7 +3662,7 @@ window.COURSES = {
   },
   "MDES2042": {
     code: "MDES UN2042", name: "South Asia at the Crossroads of Empires", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "MDES", category: "elective",
     description: "South Asian history between empires.",
     professors: ["TBA"]
@@ -3683,7 +3683,7 @@ window.COURSES = {
   },
   "MDES3121": {
     code: "MDES UN3121", name: "Literature and Cultures of Struggle in South Africa", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["spring"], prereqs: [], difficulty: 3,
     dept: "MDES", category: "elective",
     description: "South African writing against apartheid and after.",
     professors: ["TBA"]
@@ -3692,7 +3692,7 @@ window.COURSES = {
   // ── Depth pass: ARCH ───────────────────────────────────────
   "ARCH1030": {
     code: "ARCH UN1030", name: "The City: Thinking with the Urban Built Environment", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "ARCH", category: "elective",
     description: "The urban built environment as a way of thinking.",
     professors: ["TBA"]
@@ -3736,7 +3736,7 @@ window.COURSES = {
   // ── Depth pass: CPLS ───────────────────────────────────────
   "CPLS3931": {
     code: "CPLS UN3931", name: "Life at the End of Life: Palliative Care and Service", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "CPLS", category: "elective",
     description: "Narrative medicine and end-of-life care.",
     professors: ["TBA"]
@@ -3808,7 +3808,7 @@ window.COURSES = {
   },
   "WRIT3048": {
     code: "WRIT UN3048", name: "Writing Your World with Lydia Davis", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "WRIT", category: "elective",
     description: "Craft seminar on short forms and observation.",
     professors: ["TBA"]
@@ -3822,7 +3822,7 @@ window.COURSES = {
   },
   "WRIT3210": {
     code: "WRIT UN3210", name: "The Modern Culture Writer", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "WRIT", category: "elective",
     description: "Criticism and cultural journalism as craft.",
     professors: ["TBA"]
@@ -3845,7 +3845,7 @@ window.COURSES = {
   },
   "EESC1030": {
     code: "EESC UN1030", name: "Oceanography", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 1,
+    offered: ["fall"], prereqs: [], difficulty: 1,
     dept: "EESC", category: "science",
     description: "Breadth course: the ocean system.",
     professors: ["TBA"]
@@ -3859,7 +3859,7 @@ window.COURSES = {
   },
   "EESC1600": {
     code: "EESC UN1600", name: "Earth Resources and Sustainable Development", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 1,
+    offered: ["fall"], prereqs: [], difficulty: 1,
     dept: "EESC", category: "science",
     description: "Breadth course: resources and sustainability.",
     professors: ["TBA"]
@@ -3882,7 +3882,7 @@ window.COURSES = {
   },
   "EEEB3215": {
     code: "EEEB UN3215", name: "Introduction to Human Osteology", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["spring"], prereqs: [], difficulty: 3,
     dept: "EEEB", category: "elective",
     description: "The human skeleton in evolutionary context.",
     professors: ["TBA"]
@@ -3896,7 +3896,7 @@ window.COURSES = {
   },
   "EEEB3910": {
     code: "EEEB UN3910", name: "The Neandertals", credits: 4,
-    offered: ["fall"], prereqs: ["EEEB1010"], difficulty: 3,
+    offered: ["spring"], prereqs: ["EEEB1010"], difficulty: 3,
     dept: "EEEB", category: "elective",
     description: "Neandertal biology, behavior, and extinction.",
     professors: ["TBA"]
@@ -3919,7 +3919,7 @@ window.COURSES = {
   },
   "PHIL2655": {
     code: "PHIL UN2655", name: "Cognitive Science and Philosophy", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "PHIL", category: "elective",
     description: "Philosophical foundations of cognitive science.",
     professors: ["TBA"]
@@ -3940,7 +3940,7 @@ window.COURSES = {
   },
   "NSBV3381": {
     code: "NSBV BC3381", name: "Visual Neuroscience", credits: 3,
-    offered: ["spring"], prereqs: ["NSBV2000"], difficulty: 4,
+    offered: ["fall"], prereqs: ["NSBV2000"], difficulty: 4,
     dept: "NSBV", category: "elective",
     description: "The visual system from retina to cortex.",
     professors: ["TBA"]
@@ -3956,28 +3956,28 @@ window.COURSES = {
   },
   "CSER3490": {
     code: "CSER UN3490", name: "Post-9/11 Immigration Policies", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "CSER", category: "elective",
     description: "Immigration policy and racialization after 9/11.",
     professors: ["TBA"]
   },
   "CSER3701": {
     code: "CSER UN3701", name: "Latinx Racial Identity and Cultural Production", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["spring"], prereqs: [], difficulty: 3,
     dept: "CSER", category: "elective",
     description: "Latinx identity across media and culture.",
     professors: ["TBA"]
   },
   "CSER3702": {
     code: "CSER UN3702", name: "Memory and Monuments in the U.S. West", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "CSER", category: "elective",
     description: "Public memory and contested monuments.",
     professors: ["TBA"]
   },
   "CSER3821": {
     code: "CSER UN3821", name: "Archives of Possibility", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["spring"], prereqs: [], difficulty: 3,
     dept: "CSER", category: "elective",
     description: "Archival practice and marginalized histories.",
     professors: ["TBA"]
@@ -3991,14 +3991,14 @@ window.COURSES = {
   },
   "CSER3940": {
     code: "CSER UN3940", name: "Comparative Study of Constitutional Challenges", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["spring"], prereqs: [], difficulty: 3,
     dept: "CSER", category: "elective",
     description: "Constitutions and contested rights, comparatively.",
     professors: ["TBA"]
   },
   "CSER3949": {
     code: "CSER UN3949", name: "Global Artivisms", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 3,
+    offered: ["fall"], prereqs: [], difficulty: 3,
     dept: "CSER", category: "elective",
     description: "Art and activism across the globe.",
     professors: ["TBA"]
@@ -4037,14 +4037,14 @@ window.COURSES = {
   },
   "SDEV2050": {
     code: "SDEV UN2050", name: "Environmental Policy and Governance", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "SDEV", category: "elective",
     description: "Institutions and policy design for the environment.",
     professors: ["TBA"]
   },
   "SDEV2100": {
     code: "SDEV UN2100", name: "Introduction to Climate Justice", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["spring"], prereqs: [], difficulty: 2,
     dept: "SDEV", category: "elective",
     description: "Equity and justice in climate policy.",
     professors: ["TBA"]
@@ -4065,7 +4065,7 @@ window.COURSES = {
   },
   "SDEV3360": {
     code: "SDEV UN3360", name: "Disasters and Development", credits: 3,
-    offered: ["spring"], prereqs: ["EESC2330","SDEV2300"], difficulty: 3,
+    offered: ["fall"], prereqs: ["EESC2330","SDEV2300"], difficulty: 3,
     dept: "SDEV", category: "elective",
     description: "Disaster risk and development pathways.",
     professors: ["TBA"]
@@ -4088,35 +4088,35 @@ window.COURSES = {
   },
   "VIAR2001": {
     code: "VIAR UN2001", name: "Drawing II", credits: 3,
-    offered: ["fall"], prereqs: ["VIAR1000"], difficulty: 2,
+    offered: ["fall","spring"], prereqs: ["VIAR1000"], difficulty: 2,
     dept: "VIAR", category: "major",
     description: "Continued drawing practice.",
     professors: ["TBA"]
   },
   "VIAR2021": {
     code: "VIAR UN2021", name: "Figure Drawing", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 2,
+    offered: ["fall"], prereqs: [], difficulty: 2,
     dept: "VIAR", category: "major",
     description: "Popular and historical gestures: drawing the figure.",
     professors: ["TBA"]
   },
   "VIAR2200": {
     code: "VIAR UN2200", name: "Ceramics I", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "VIAR", category: "major",
     description: "Introduction to ceramics.",
     professors: ["TBA"]
   },
   "VIAR3010": {
     code: "VIAR UN3010", name: "Collage: Mixed Media", credits: 3,
-    offered: ["spring"], prereqs: ["VIAR1000"], difficulty: 3,
+    offered: ["fall","spring"], prereqs: ["VIAR1000"], difficulty: 3,
     dept: "VIAR", category: "major",
     description: "Mixed-media and collage practice.",
     professors: ["TBA"]
   },
   "VIAR3101": {
     code: "VIAR UN3101", name: "Painting II", credits: 3,
-    offered: ["spring"], prereqs: ["VIAR1000","VIAR2100"], difficulty: 3,
+    offered: ["fall"], prereqs: ["VIAR1000","VIAR2100"], difficulty: 3,
     dept: "VIAR", category: "major",
     description: "Intermediate painting.",
     professors: ["TBA"]
@@ -4130,7 +4130,7 @@ window.COURSES = {
   },
   "VIAR3301": {
     code: "VIAR UN3301", name: "Sculpture II", credits: 3,
-    offered: ["fall"], prereqs: ["VIAR2300"], difficulty: 3,
+    offered: ["spring"], prereqs: ["VIAR2300"], difficulty: 3,
     dept: "VIAR", category: "major",
     description: "Intermediate sculpture.",
     professors: ["TBA"]
@@ -4185,7 +4185,7 @@ window.COURSES = {
   },
   "GREK2101": {
     code: "GREK UN2101", name: "Intermediate Greek I", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3,
+    offered: ["fall","spring"], prereqs: [], difficulty: 3,
     dept: "CLAS", category: "major",
     description: "Intermediate readings in ancient Greek prose.",
     professors: ["TBA"]
@@ -4207,14 +4207,14 @@ window.COURSES = {
 
   "URBS1515": {
     code: "URBS UN1515", name: "Introduction to Urban Studies", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 2,
+    offered: ["fall","spring"], prereqs: [], difficulty: 2,
     dept: "URBS", category: "major",
     description: "Foundational overview of urban studies as an interdisciplinary field.",
     professors: ["TBA"]
   },
   "URBS3545": {
     code: "URBS UN3545", name: "Junior Colloquium in Urban Studies", credits: 4,
-    offered: ["spring"], prereqs: ["URBS1515"], difficulty: 3,
+    offered: ["fall"], prereqs: ["URBS1515"], difficulty: 3,
     dept: "URBS", category: "major",
     description: "Research-skills seminar taken junior year.",
     professors: ["TBA"]
@@ -4249,14 +4249,14 @@ window.COURSES = {
   },
   "STAT4206": {
     code: "STAT GU4206", name: "Statistical Computing and Introduction to Data Science", credits: 3,
-    offered: ["fall"], prereqs: ["STAT4204"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["STAT4204"], difficulty: 4,
     dept: "STAT", category: "major",
     description: "Computational statistics, R programming, and data science practice.",
     professors: ["TBA"]
   },
   "STAT4207": {
     code: "STAT GU4207", name: "Elementary Stochastic Processes", credits: 3,
-    offered: ["spring"], prereqs: ["STAT4203"], difficulty: 4,
+    offered: ["fall","spring"], prereqs: ["STAT4203"], difficulty: 4,
     dept: "STAT", category: "major",
     description: "Markov chains, Poisson processes, and stochastic modeling.",
     professors: ["TBA"]
@@ -4270,7 +4270,7 @@ window.COURSES = {
     offered: ["spring"], prereqs: [], difficulty: 2, dept: "AFRS", category: "major",
     description: "Cultures and societies of the Caribbean.", professors: ["TBA"] },
   "AFRS2006": { code: "AFRS BC2006", name: "Introduction to African Diaspora", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 2, dept: "AFRS", category: "major",
+    offered: ["spring"], prereqs: [], difficulty: 2, dept: "AFRS", category: "major",
     description: "Introduction to the African diaspora.", professors: ["TBA"] },
   "AFRS3110": { code: "AFRS BC3110", name: "The Africana Colloquium", credits: 4,
     offered: ["fall"], prereqs: [], difficulty: 3, dept: "AFRS", category: "major",
@@ -4279,7 +4279,7 @@ window.COURSES = {
     offered: ["fall"], prereqs: ["AFRS3110"], difficulty: 4, dept: "AFRS", category: "major",
     description: "Interdisciplinary research seminar culminating in the senior essay.", professors: ["Advisor assigned"] },
   "AMSTBC1001": { code: "AMST BC1001", name: "What Is American Studies?", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 2, dept: "AMST", category: "major",
+    offered: ["spring"], prereqs: [], difficulty: 2, dept: "AMST", category: "major",
     description: "Barnard gateway to American studies, taken before sophomore year.", professors: ["TBA"] },
   "AMSTBC3001": { code: "AMST BC3001", name: "Methods Seminar: Cultural Studies", credits: 4,
     offered: ["spring"], prereqs: ["AMSTBC1001"], difficulty: 3, dept: "AMST", category: "major",
@@ -4294,7 +4294,7 @@ window.COURSES = {
     offered: ["fall"], prereqs: ["ANTH1002"], difficulty: 3, dept: "ANTH", category: "major",
     description: "Required theory course for majors.", professors: ["TBA"] },
   "ANTHBC3868": { code: "ANTH BC3868", name: "Ethnographic Field Research in NYC", credits: 4,
-    offered: ["spring"], prereqs: ["ANTH1002"], difficulty: 3, dept: "ANTH", category: "major",
+    offered: ["fall"], prereqs: ["ANTH1002"], difficulty: 3, dept: "ANTH", category: "major",
     description: "Methods course recommended before senior year.", professors: ["TBA"] },
   "ANTHBC3871": { code: "ANTH BC3871", name: "Senior Thesis Seminar I", credits: 4,
     offered: ["fall"], prereqs: ["ANTH3040"], difficulty: 4, dept: "ANTH", category: "major",
@@ -4312,7 +4312,7 @@ window.COURSES = {
     offered: ["fall"], prereqs: ["AHISBC1002"], difficulty: 3, dept: "AHIS", category: "major",
     description: "Methods course taken junior or senior year.", professors: ["TBA"] },
   "AHISBC3959": { code: "AHIS BC3959", name: "Senior Research Seminar", credits: 4,
-    offered: ["fall","spring"], prereqs: ["AHISBC3970"], difficulty: 4, dept: "AHIS", category: "major",
+    offered: ["fall"], prereqs: ["AHISBC3970"], difficulty: 4, dept: "AHIS", category: "major",
     description: "Senior thesis research seminar.", professors: ["Advisor assigned"] },
   "FRENBC1203": { code: "FREN BC1203", name: "Intermediate French I", credits: 4,
     offered: ["fall","spring"], prereqs: [], difficulty: 2, dept: "FREN", category: "major",
@@ -4359,7 +4359,7 @@ window.COURSES = {
     offered: ["fall","spring"], prereqs: ["PHIL2110","PHIL2120"], difficulty: 4, dept: "PHIL", category: "major",
     description: "Barnard senior seminar; option of year-long senior essay.", professors: ["Advisor assigned"] },
   "RELIGU4105": { code: "RELI GU4105", name: "Religion Lab", credits: 4,
-    offered: ["spring"], prereqs: [], difficulty: 3, dept: "RELI", category: "major",
+    offered: ["fall"], prereqs: [], difficulty: 3, dept: "RELI", category: "major",
     description: "Methods, strategies, and materials for research in religion.", professors: ["TBA"] },
   "RELIBC3997": { code: "RELI BC3997", name: "Senior Research Seminar I", credits: 4,
     offered: ["fall"], prereqs: ["RELI3199"], difficulty: 4, dept: "RELI", category: "major",
@@ -4374,28 +4374,25 @@ window.COURSES = {
     offered: ["fall"], prereqs: [], difficulty: 2, dept: "FILM", category: "major",
     description: "Prerequisite for all Barnard film courses.", professors: ["TBA"] },
   "FILMGU4000": { code: "FILM GU4000", name: "Film and Media Theory", credits: 3,
-    offered: ["spring"], prereqs: ["FILMBC3201"], difficulty: 3, dept: "FILM", category: "major",
+    offered: ["fall"], prereqs: ["FILMBC3201"], difficulty: 3, dept: "FILM", category: "major",
     description: "Core theory course for the film major.", professors: ["TBA"] },
   "FILM2010": { code: "FILM UN2010", name: "Film History: Beginnings to 1930", credits: 3,
-    offered: ["fall"], prereqs: [], difficulty: 2, dept: "FILM", category: "major",
+    offered: ["spring"], prereqs: [], difficulty: 2, dept: "FILM", category: "major",
     description: "Silent and early cinema.", professors: ["TBA"] },
   "FILM2020": { code: "FILM UN2020", name: "Film History: 1930-1960", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 2, dept: "FILM", category: "major",
+    offered: ["fall"], prereqs: [], difficulty: 2, dept: "FILM", category: "major",
     description: "Classical studio-era cinema.", professors: ["TBA"] },
   "FILMBC3119": { code: "FILM BC3119", name: "Screenwriting Fundamentals", credits: 3,
-    offered: ["fall"], prereqs: ["FILMBC3201"], difficulty: 3, dept: "FILM", category: "major",
+    offered: ["fall","spring"], prereqs: ["FILMBC3201"], difficulty: 3, dept: "FILM", category: "major",
     description: "Lab in critical/creative practice: screenwriting.", professors: ["TBA"] },
   "FILMBC3200": { code: "FILM BC3200", name: "Film Production", credits: 3,
-    offered: ["spring"], prereqs: ["FILMBC3201"], difficulty: 3, dept: "FILM", category: "major",
+    offered: ["fall","spring"], prereqs: ["FILMBC3201"], difficulty: 3, dept: "FILM", category: "major",
     description: "Lab in critical/creative practice: production.", professors: ["TBA"] },
-  "FILMBC3997": { code: "ENGL BC3997", name: "Senior Seminar (Film)", credits: 4,
-    offered: ["fall"], prereqs: ["FILMGU4000"], difficulty: 4, dept: "FILM", category: "major",
-    description: "Senior capstone seminar for film majors.", professors: ["Advisor assigned"] },
   "WMSTBC2150": { code: "WMST BC2150", name: "Intersectional Feminisms", credits: 3,
-    offered: ["spring"], prereqs: [], difficulty: 2, dept: "WMST", category: "major",
+    offered: ["fall","spring"], prereqs: [], difficulty: 2, dept: "WMST", category: "major",
     description: "Alternative gateway: feminisms and intersectionality.", professors: ["TBA"] },
   "WMSTBC2140": { code: "WMST BC2140", name: "Critical Approaches in Social and Cultural Theory", credits: 4,
-    offered: ["fall"], prereqs: [], difficulty: 3, dept: "WMST", category: "major",
+    offered: ["fall","spring"], prereqs: [], difficulty: 3, dept: "WMST", category: "major",
     description: "Required foundation in social and cultural theory.", professors: ["TBA"] },
   "ASCM2008": { code: "ASCM UN2008", name: "Contemporary Islamic Civilization", credits: 4,
     offered: ["spring"], prereqs: [], difficulty: 2, dept: "MDES", category: "major",

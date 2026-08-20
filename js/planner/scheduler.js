@@ -16,7 +16,7 @@ window.Scheduler = (function () {
   function semesterLabel(index, startSemester) {
     const year = Math.floor(index / 2) + 1;
     const type = semesterType(index, startSemester);
-    return (type === "fall" ? "Fall" : "Spring") + " — Year " + year;
+    return (type === "fall" ? "Fall" : "Spring") + " · Year " + year;
   }
 
   // Select best professor for a course (highest CULPA score, prefer gold nugget)
@@ -42,13 +42,20 @@ window.Scheduler = (function () {
    * Generate a semester-by-semester plan.
    *
    * @param {string[]} courseCodes  - All courses to schedule (deduplicated)
-   * @param {string}   startSem    - "fall" or "spring"
-   * @param {number}   totalSems   - Number of semesters (default 8)
-   * @returns {{ plan: object[], warnings: string[], courseMap: object }}
+   * @param {string}   startSem     - "fall" or "spring"
+   * @param {number}   totalSems    - Number of semesters (default 8)
+   * @param {object}   opts         - { completedSems, maxCredits }
+   *   completedSems: semesters already finished (e.g. 4 for a junior);
+   *     those semesters render but receive no courses.
+   *   maxCredits: per-term registration cap without a petition
+   *     (CC/GS 18, Barnard 19, SEAS 21).
+   * @returns {{ plan: object[], warnings: string[], assignedSem: object }}
    */
-  function generate(courseCodes, startSem, totalSems) {
+  function generate(courseCodes, startSem, totalSems, opts) {
     startSem = startSem || "fall";
     totalSems = totalSems || 8;
+    opts = opts || {};
+    const completedSems = Math.max(0, opts.completedSems || 0);
 
     // Deduplicate
     const codes = [...new Set(courseCodes)].filter(c => COURSES[c]);
@@ -110,13 +117,14 @@ window.Scheduler = (function () {
         type: semesterType(i, startSem),
         label: semesterLabel(i, startSem),
         year: Math.floor(i / 2) + 1,
+        completed: i < completedSems,
         courses: [],
         credits: 0,
         difficulty_sum: 0
       });
     }
 
-    const MAX_CREDITS = 18;
+    const MAX_CREDITS = opts.maxCredits || 18;
     const MAX_DIFFICULTY = 20; // sum of course difficulties per semester
     const MAX_COURSES = 6;
 
@@ -127,8 +135,8 @@ window.Scheduler = (function () {
     sortedCodes.forEach(code => {
       const course = COURSES[code];
 
-      // Earliest semester: one after the latest prereq
-      let earliest = 0;
+      // Earliest semester: after completed terms, and one after the latest prereq
+      let earliest = completedSems;
       course.prereqs.forEach(prereq => {
         if (assignedSem[prereq] !== undefined) {
           earliest = Math.max(earliest, assignedSem[prereq] + 1);
@@ -139,6 +147,8 @@ window.Scheduler = (function () {
       let assigned = false;
       for (let i = earliest; i < totalSems; i++) {
         const sem = semesters[i];
+        // Never place courses in semesters that have already passed
+        if (sem.completed) continue;
         // Check semester type matches course offering
         if (!course.offered.includes(sem.type)) continue;
         // Check load constraints
@@ -175,10 +185,21 @@ window.Scheduler = (function () {
     }
 
     // ── Compute per-semester difficulty rating ──────────────
+    recompute(semesters);
+
+    return { plan: semesters, warnings, assignedSem };
+  }
+
+  // Recompute credits, difficulty sums, and labels for every semester.
+  // Called after generation and again after any manual plan edit.
+  function recompute(semesters) {
     semesters.forEach(sem => {
+      sem.credits = sem.courses.reduce((s, c) => s + c.credits, 0);
+      sem.difficulty_sum = sem.courses.reduce((s, c) => s + (COURSES[c.id]?.difficulty || 3), 0);
+
       if (sem.courses.length === 0) {
         sem.difficulty_avg = 0;
-        sem.difficulty_label = "Empty";
+        sem.difficulty_label = sem.completed ? "Completed" : "Empty";
         sem.difficulty_class = "diff-empty";
         return;
       }
@@ -201,11 +222,9 @@ window.Scheduler = (function () {
         sem.difficulty_class = "diff-very-heavy";
       }
     });
-
-    return { plan: semesters, warnings, assignedSem };
   }
 
   // ── Public API ─────────────────────────────────────────────
-  return { generate, selectBestProfessor };
+  return { generate, selectBestProfessor, recompute };
 
 })();
